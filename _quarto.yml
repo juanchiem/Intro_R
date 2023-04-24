@@ -1,0 +1,37 @@
+project:
+  type: book
+  title: "R Intro"
+  output-dir: docs
+
+execute:
+  cache: true
+  freeze: auto
+
+book:
+  title: "R Intro"
+  author: ""
+  chapters:
+    - index.qmd
+    # - part: "Sintaxis básica de R"
+    #   chapters:
+        # - data-terminology.qmd
+        # - data-ordinal.qmd
+    # - part: "Tidyverse"
+    #   chapters: 
+        # - temporal-dpc.qmd
+    # - part: "Bases del modelado"
+    #   chapters:
+        # - spatial-gradients.qmd
+    - referencias.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    toc: true
+    toc-depth: 5
+    theme: 
+      light: cosmo
+      dark: superhero
+

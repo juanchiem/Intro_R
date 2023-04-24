@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html#bienvenids",
+    "href": "index.html#bienvenids",
+    "title": "R Intro",
+    "section": "Bienvenid@s",
+    "text": "Bienvenid@s\n\n\nUna de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico. Adaptación de Ellison and Gotelli (2004)"
+  },
+  {
+    "objectID": "index.html#por-qué-r",
+    "href": "index.html#por-qué-r",
+    "title": "R Intro",
+    "section": "¿Por qué R?",
+    "text": "¿Por qué R?\n\nSoftware libre - multiplataforma\n\n\n\n\n\n\n\nAprender un lenguaje de programación: ejercicio mental/lógica (Mayor aprovechamiento de otros cursos específicos)\n\n\n\n\n\n\n(Si quieren aprender a fondo matemática, aprendan programación, si quieren aprender a fondo biología, aprendan programación…)\n\n\n\n\n\n\nAmplia gama de paquetes específicos\n\n\n\n\n\n\n\nGran flexibilidad y elegancia de los gráficos\n\n\n\n\n\n\n\nPopularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)\n\n\n\n\n\n\n\nProgramar ya no es sólo computación (CV/relevant skills)"
+  },
+  {
+    "objectID": "index.html#objetivos",
+    "href": "index.html#objetivos",
+    "title": "R Intro",
+    "section": "Objetivos",
+    "text": "Objetivos\n\nProveer en 3 semanas de curso un pantallazo de las herramientas que pueden optimizar la labor cotidiana a lo largo del flujo de trabajo con datos.\n\n\n\n\n\n\n\n“R for Data Science” Wickham and Grolemund (2016)\n\n\n\nAcompañar la primer fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.\n\n\n\n\n\n\n\n\nBrindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, en caso de ser necesario, un soporte personalizado para llegar a nuestra meta de que “ninguno se quede abajo de este tren”.\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\n\n\nNo es un curso de estadística\nEntendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguimos siendo fitopatólogos, veterinarios, bioquímicos, etc."
+  },
+  {
+    "objectID": "index.html#modalidad",
+    "href": "index.html#modalidad",
+    "title": "R Intro",
+    "section": "Modalidad",
+    "text": "Modalidad\n\nAl inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios\nSugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s\nPueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).\nLos viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.\nOptativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir.\n\n\n\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. \" O’Reilly Media, Inc.\". http://r4ds.had.co.nz/."
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "Referencias",
+    "section": "",
+    "text": "Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
+  }
+]

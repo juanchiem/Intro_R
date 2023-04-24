@@ -1,0 +1,96 @@
+## Bienvenid\@s {.unnumbered}
+
+::: grid
+::: g-col-7
+
+*Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.* Adaptación de @ellison2004primer
+:::
+
+::: g-col-5
+![](fig/top1.png){fig-align="right" width="500"}
+:::
+:::
+
+<br/><br/>
+
+## ¿Por qué R? {.unnumbered}
+
+1.  Software libre - multiplataforma
+
+![](fig/installing.png){fig-align="center" width="300"}
+
+2.  Aprender un lenguaje de programación: ejercicio mental/lógica (Mayor aprovechamiento de otros cursos específicos)
+
+![](fig/pregunta_respuesta.jpg){fig-align="center" width="300"}
+
+(Si quieren aprender a fondo matemática, aprendan programación, si quieren aprender a fondo biología, aprendan programación...)
+
+![](fig/steve_jobs.png){fig-align="center" width="300"}
+
+3.  Amplia gama de paquetes específicos
+
+![](fig/pckgs.jpg){fig-align="center" width="300px"}
+
+4.  Gran flexibilidad y elegancia de los gráficos
+
+![](fig/images.jpeg){fig-align="center" width="300px"}
+
+5.  Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+
+![](fig/door.jpeg){fig-align="center" width="300px"}
+
+6.  Programar ya no es sólo computación (CV/relevant skills)
+
+![](fig/resume.png){fig-align="center" width="300px"}
+
+<br/><br/>
+
+## Objetivos {.unnumbered}
+
+-   Proveer en *3 semanas* de curso un pantallazo de las herramientas que pueden optimizar la labor cotidiana a lo largo del flujo de trabajo con datos.
+
+![](fig/workflow.jpg){fig-align="center" width="500px"}
+
+::: {style="text-align: right"}
+"R for Data Science" @wickham2016r
+:::
+
+<br/><br/>
+
+
+
+-   Acompañar la primer fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.
+
+![](fig/learn.png){fig-align="center" width="300px"}
+
+<br/><br/>
+
+-   Brindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, en caso de ser necesario, un soporte personalizado para llegar a nuestra meta de que "ninguno se quede abajo de este tren".
+
+![](fig/tren.png){fig-align="center" width="300px"}
+
+<br/><br/>
+
+::: callout-warning
+## Importante
+
+i)  No es un curso de estadística
+
+ii) Entendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguimos siendo fitopatólogos, veterinarios, bioquímicos, etc.
+:::
+
+<br/><br/>
+
+## Modalidad {.unnumbered}
+
+- Al inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios
+
+- Sugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s 
+
+- Pueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).
+
+- Los viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.
+
+- Optativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir. 
+
+
