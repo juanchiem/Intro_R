@@ -14,35 +14,38 @@
 
 <br/><br/>
 
-## ¿Por qué R? {.unnumbered}
+## ¿Por qué programar? {.unnumbered}
 
-1.  Software libre - multiplataforma
-
-![](fig/installing.png){fig-align="center" width="300"}
-
-2.  Aprender un lenguaje de programación: ejercicio mental/lógica (Mayor aprovechamiento de otros cursos específicos)
+* Poderoso ejercicio cognitivo: exige razonamiento lógico 
 
 ![](fig/pregunta_respuesta.jpg){fig-align="center" width="300"}
 
-(Si quieren aprender a fondo matemática, aprendan programación, si quieren aprender a fondo biología, aprendan programación...)
+* Potencia el aprendizaje de cualquier disciplina de la ciencia 
 
 ![](fig/steve_jobs.png){fig-align="center" width="300"}
 
-3.  Amplia gama de paquetes específicos
+
+* Programar ya no es sólo para los que estudian computación (CV/relevant skills)
+
+![](fig/resume.png){fig-align="center" width="300px"}
+
+## ¿Por qué R? {.unnumbered}
+
+* Software libre - multiplataforma
+
+![](fig/installing.png){fig-align="center" width="300"}
+
+* Amplia gama de paquetes específicos
 
 ![](fig/pckgs.jpg){fig-align="center" width="300px"}
 
-4.  Gran flexibilidad y elegancia de los gráficos
+* Gran flexibilidad y elegancia de los gráficos
 
 ![](fig/images.jpeg){fig-align="center" width="300px"}
 
-5.  Popularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)
+* Su comunidad: gran predisposición a ayudar 
 
 ![](fig/door.jpeg){fig-align="center" width="300px"}
-
-6.  Programar ya no es sólo computación (CV/relevant skills)
-
-![](fig/resume.png){fig-align="center" width="300px"}
 
 <br/><br/>
 
@@ -58,13 +61,13 @@
 
 <br/><br/>
 
--   Acompañar la primer fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.
+-   Acompañar la fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.
 
 ![](fig/learn.png){fig-align="center" width="300px"}
 
 <br/><br/>
 
--   Brindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, en caso de ser necesario, un soporte personalizado para llegar a nuestra meta de que "ninguno se quede abajo de este tren".
+-   Brindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, brindando soporte personalizado en caso de ser requerido para llegar a nuestra meta de que "ninguno se quede abajo de este tren".
 
 ![](fig/tren.png){fig-align="center" width="300px"}
 

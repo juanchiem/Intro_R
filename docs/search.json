@@ -11,14 +11,14 @@
     "href": "index.html#por-qué-r",
     "title": "R Intro",
     "section": "¿Por qué R?",
-    "text": "¿Por qué R?\n\nSoftware libre - multiplataforma\n\n\n\n\n\n\n\nAprender un lenguaje de programación: ejercicio mental/lógica (Mayor aprovechamiento de otros cursos específicos)\n\n\n\n\n\n\n(Si quieren aprender a fondo matemática, aprendan programación, si quieren aprender a fondo biología, aprendan programación…)\n\n\n\n\n\n\nAmplia gama de paquetes específicos\n\n\n\n\n\n\n\nGran flexibilidad y elegancia de los gráficos\n\n\n\n\n\n\n\nPopularidad - Comunidad activa y creciente dispuesta a ayudar (aprendemos a usar terminos técnicos de data science en inglés)\n\n\n\n\n\n\n\nProgramar ya no es sólo computación (CV/relevant skills)"
+    "text": "¿Por qué R?\n\nSoftware libre - multiplataforma\n\n\n\n\n\n\n\nAmplia gama de paquetes específicos\n\n\n\n\n\n\n\nGran flexibilidad y elegancia de los gráficos\n\n\n\n\n\n\n\nSu comunidad: gran predisposición a ayudar"
   },
   {
     "objectID": "index.html#objetivos",
     "href": "index.html#objetivos",
     "title": "R Intro",
     "section": "Objetivos",
-    "text": "Objetivos\n\nProveer en 3 semanas de curso un pantallazo de las herramientas que pueden optimizar la labor cotidiana a lo largo del flujo de trabajo con datos.\n\n\n\n\n\n\n\n“R for Data Science” Wickham and Grolemund (2016)\n\n\n\nAcompañar la primer fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.\n\n\n\n\n\n\n\n\nBrindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, en caso de ser necesario, un soporte personalizado para llegar a nuestra meta de que “ninguno se quede abajo de este tren”.\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\n\n\nNo es un curso de estadística\nEntendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguimos siendo fitopatólogos, veterinarios, bioquímicos, etc."
+    "text": "Objetivos\n\nProveer en 3 semanas de curso un pantallazo de las herramientas que pueden optimizar la labor cotidiana a lo largo del flujo de trabajo con datos.\n\n\n\n\n\n\n\n“R for Data Science” Wickham and Grolemund (2016)\n\n\n\nAcompañar la fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.\n\n\n\n\n\n\n\n\nBrindar un sistema flexible de aprendizaje en cuanto a los horarios de cada uno y, brindando soporte personalizado en caso de ser requerido para llegar a nuestra meta de que “ninguno se quede abajo de este tren”.\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\n\n\nNo es un curso de estadística\nEntendemos la programación como un simple medio para optimizar nuestra labor cotidiana (no como un fin mismo), al final del día seguimos siendo fitopatólogos, veterinarios, bioquímicos, etc."
   },
   {
     "objectID": "index.html#modalidad",
@@ -40,5 +40,12 @@
     "title": "R Intro",
     "section": "Sobre nosotros",
     "text": "Sobre nosotros\n\n\n\n\n\n\nJuan Edwards\n\n\n\n\n\n\n\nJuan Paredes\n\n\n\n\n\n\n\nBruno Pugliese\n\n\n\n\n\n\n\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. \" O’Reilly Media, Inc.\". http://r4ds.had.co.nz/."
+  },
+  {
+    "objectID": "index.html#por-qué-programar",
+    "href": "index.html#por-qué-programar",
+    "title": "R Intro",
+    "section": "¿Por qué programar?",
+    "text": "¿Por qué programar?\n\nPoderoso ejercicio cognitivo: exige razonamiento lógico\n\n\n\n\n\n\n\nPotencia el aprendizaje de cualquier disciplina de la ciencia\n\n\n\n\n\n\n\nProgramar ya no es sólo para los que estudian computación (CV/relevant skills)"
   }
 ]
