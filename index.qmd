@@ -16,34 +16,33 @@
 
 ## ¿Por qué programar? {.unnumbered}
 
-* Poderoso ejercicio cognitivo: exige razonamiento lógico 
+-   Poderoso ejercicio cognitivo: exige razonamiento lógico
 
 ![](fig/pregunta_respuesta.jpg){fig-align="center" width="300"}
 
-* Potencia el aprendizaje de cualquier disciplina de la ciencia 
+-   Potencia el aprendizaje de cualquier disciplina de la ciencia
 
 ![](fig/steve_jobs.png){fig-align="center" width="300"}
 
-
-* Programar ya no es sólo para los que estudian computación (CV/relevant skills)
+-   Programar ya no es sólo para los que estudian computación (CV/relevant skills)
 
 ![](fig/resume.png){fig-align="center" width="300px"}
 
 ## ¿Por qué R? {.unnumbered}
 
-* Software libre - multiplataforma
+-   Software libre - multiplataforma
 
 ![](fig/installing.png){fig-align="center" width="300"}
 
-* Amplia gama de paquetes específicos
+-   Amplia gama de paquetes específicos
 
 ![](fig/pckgs.jpg){fig-align="center" width="300px"}
 
-* Gran flexibilidad y elegancia de los gráficos
+-   Gran flexibilidad y elegancia de los gráficos
 
 ![](fig/images.jpeg){fig-align="center" width="300px"}
 
-* Su comunidad: gran predisposición a ayudar 
+-   Su comunidad: gran predisposición a ayudar
 
 ![](fig/door.jpeg){fig-align="center" width="300px"}
 
@@ -98,9 +97,9 @@ ii) Entendemos la programación como un simple medio para optimizar nuestra labo
 ## Sobre nosotros {.unnumbered}
 
 ::: {layout-nrow="1" layout-valign="bottom"}
-![Juan Edwards](fig/becho.jpg){fig-align="center" widht="300px"}
+![Juan Edwards](fig/becho.jpg){width="4.8cm"}
 
-![Juan Paredes](fig/choper.jpeg){fig-align="center" widht="300px"}
+![Juan Paredes](fig/choper.jpeg){width="4.4cm"}
 
-![Bruno Pugliese](fig/bruno.jpg){fig-align="center" width="300px"}
+![Bruno Pugliese](fig/bruno.jpg){width="4.1cm" height="5cm"}
 :::
