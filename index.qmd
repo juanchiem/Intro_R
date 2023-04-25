@@ -40,7 +40,7 @@
 
 -   Gran flexibilidad y elegancia de los gráficos
 
-![](fig/images.jpeg){fig-align="center" width="300px"}
+![](fig/ggplot.png){fig-align="center" width="300px"}
 
 -   Su comunidad: gran predisposición a ayudar
 
