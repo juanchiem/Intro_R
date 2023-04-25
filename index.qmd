@@ -2,8 +2,9 @@
 
 ::: grid
 ::: g-col-7
+*Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.*
 
-*Una de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.* Adaptación de @ellison2004primer
+@ellison2004primer
 :::
 
 ::: g-col-5
@@ -57,8 +58,6 @@
 
 <br/><br/>
 
-
-
 -   Acompañar la primer fase empinada de la curva de aprendizaje de un nuevo lenguaje, que a la larga redituará en múltiples beneficios tanto profesionales como personales.
 
 ![](fig/learn.png){fig-align="center" width="300px"}
@@ -83,14 +82,22 @@ ii) Entendemos la programación como un simple medio para optimizar nuestra labo
 
 ## Modalidad {.unnumbered}
 
-- Al inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios
+-   Al inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios
 
-- Sugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s 
+-   Sugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s
 
-- Pueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).
+-   Pueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).
 
-- Los viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.
+-   Los viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.
 
-- Optativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir. 
+-   Optativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir.
 
+## Sobre nosotros {.unnumbered}
 
+::: {layout-nrow="1" layout-valign="bottom"}
+![Juan Edwards](fig/becho.jpg){fig-align="center" widht="300px"}
+
+![Juan Paredes](fig/choper.jpeg){fig-align="center" widht="300px"}
+
+![Bruno Pugliese](fig/bruno.jpg){fig-align="center" width="300px"}
+:::

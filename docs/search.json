@@ -4,7 +4,7 @@
     "href": "index.html#bienvenids",
     "title": "R Intro",
     "section": "Bienvenid@s",
-    "text": "Bienvenid@s\n\n\nUna de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico. Adaptación de Ellison and Gotelli (2004)"
+    "text": "Bienvenid@s\n\n\nUna de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.\nEllison and Gotelli (2004)"
   },
   {
     "objectID": "index.html#por-qué-r",
@@ -25,7 +25,7 @@
     "href": "index.html#modalidad",
     "title": "R Intro",
     "section": "Modalidad",
-    "text": "Modalidad\n\nAl inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios\nSugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s\nPueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).\nLos viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.\nOptativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir.\n\n\n\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. \" O’Reilly Media, Inc.\". http://r4ds.had.co.nz/."
+    "text": "Modalidad\n\nAl inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios\nSugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s\nPueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).\nLos viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.\nOptativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir."
   },
   {
     "objectID": "referencias.html",
@@ -33,5 +33,12 @@
     "title": "Referencias",
     "section": "",
     "text": "Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
+  },
+  {
+    "objectID": "index.html#sobre-nosotros",
+    "href": "index.html#sobre-nosotros",
+    "title": "R Intro",
+    "section": "Sobre nosotros",
+    "text": "Sobre nosotros\n\n\n\n\n\n\nJuan Edwards\n\n\n\n\n\n\n\nJuan Paredes\n\n\n\n\n\n\n\nBruno Pugliese\n\n\n\n\n\n\n\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. \" O’Reilly Media, Inc.\". http://r4ds.had.co.nz/."
   }
 ]
