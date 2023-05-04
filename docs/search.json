@@ -7,6 +7,13 @@
     "text": "Bienvenid@s\n\n\nUna de las cosas más importantes que puedes hacer es dedicar un tiempo para aprender un lenguaje de programación. Aprender a programar es como aprender otro idioma: requiere tiempo y entrenamiento, y no hay resultados prácticos inmediatos. Pero si superas esa primera subida empinada de la curva de aprendizaje, las ganancias como científico son enormes. Programar no sólo te liberará de la camisa de fuerza de los softwares estadísticos cerrados, sino que también agudizará tus habilidades analíticas y ampliará los horizontes de modelado ecológico y estadístico.\nEllison and Gotelli (2004)"
   },
   {
+    "objectID": "index.html#por-qué-programar",
+    "href": "index.html#por-qué-programar",
+    "title": "R Intro",
+    "section": "¿Por qué programar?",
+    "text": "¿Por qué programar?\n\nPoderoso ejercicio cognitivo: exige razonamiento lógico\n\n\n\n\n\n\n\nPotencia el aprendizaje de cualquier disciplina de la ciencia\n\n\n\n\n\n\n\nProgramar ya no es sólo para los que estudian computación (CV/relevant skills)"
+  },
+  {
     "objectID": "index.html#por-qué-r",
     "href": "index.html#por-qué-r",
     "title": "R Intro",
@@ -28,13 +35,6 @@
     "text": "Modalidad\n\nAl inicio de cada semana serán disponibilizados videos con sus respectivos formularios de ejercicios que deben realizar en orden secuencial. Una vez completados cada set de ejercicios, envían los formularios\nSugerimos que puedan tener 2 pantallas para el seguimiento de los videos y ejecución en sus propias PC´s\nPueden consultar en cualquier momento cualquier duda durante el periodo del curso (por whatsapp / email).\nLos viernes haremos un encuentro virtual-sincrónico a las 13:00 (alrededor de 1 hora) para discutir sobre dudas sobre los contenidos/ejercicios de la semana. Para ello solicitamos anoten sus dudas conforme van realizando sus ejercicios y nos vayan enviando para listarlas e ir respondiendo en el encuentro de repaso.\nOptativo (pero muy sugerido!): Al finalizar los contenidos les pedimos que desarrollen lo aprendido con un caso de estudio propio para presentar en vivo durante 10 min en horario/dia a convenir."
   },
   {
-    "objectID": "referencias.html",
-    "href": "referencias.html",
-    "title": "Referencias",
-    "section": "",
-    "text": "Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
-  },
-  {
     "objectID": "index.html#sobre-nosotros",
     "href": "index.html#sobre-nosotros",
     "title": "R Intro",
@@ -42,10 +42,38 @@
     "text": "Sobre nosotros\n\n\n\n\n\n\nJuan Edwards\n\n\n\n\n\n\n\nJuan Paredes\n\n\n\n\n\n\n\nBruno Pugliese\n\n\n\n\n\n\n\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological Statistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. \" O’Reilly Media, Inc.\". http://r4ds.had.co.nz/."
   },
   {
-    "objectID": "index.html#por-qué-programar",
-    "href": "index.html#por-qué-programar",
-    "title": "R Intro",
-    "section": "¿Por qué programar?",
-    "text": "¿Por qué programar?\n\nPoderoso ejercicio cognitivo: exige razonamiento lógico\n\n\n\n\n\n\n\nPotencia el aprendizaje de cualquier disciplina de la ciencia\n\n\n\n\n\n\n\nProgramar ya no es sólo para los que estudian computación (CV/relevant skills)"
+    "objectID": "1-intro.html#instalación",
+    "href": "1-intro.html#instalación",
+    "title": "1  Configuraciones básicas",
+    "section": "Instalación",
+    "text": "Instalación\n1° R\n\n\n\n\n\n2° R Studio (bajar la versión Free)\n\n\n\n\n\nRStudio es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, o sea, R Studio es la interface (o carcasa) por medio de la cual se ejecutan acciones en R (motor).\nConfiguraciones iniciales (sugeridas). Dirigirse a la sección “Tools/Global options”"
+  },
+  {
+    "objectID": "1-intro.html#paquetes-de-r",
+    "href": "1-intro.html#paquetes-de-r",
+    "title": "1  Configuraciones básicas",
+    "section": "Paquetes de R",
+    "text": "Paquetes de R\nUn paquete es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R.\nLa simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios.\nUn repositorio es un lugar donde se alojan los paquetes para que pueda instalarlos desde él. Los repositorios mas populares son:\n\n\n\n\n\n\nRepositorios\n\n\n\nCRAN: repositorio oficial. Es una red de servidores web mantenida por la comunidad R en todo el mundo. El Core Team de R lo coordina, y para que un paquete se publique aquí, debe pasar varias pruebas que aseguren el cumplimiento de las políticas de CRAN.\nGITHUB: probablemente el repositorio más popular para proyectos particulares de código abierto. No es específico de R (sin proceso de revisión asociado).\nBioconductor: repositorio destinado a software de código abierto para bioinformática. Como CRAN, tiene sus propios procesos de presentación y revisión, y su comunidad es muy activa y tiene varias conferencias y reuniones al año.\n\n\n\n\n\n\n\n\nTip\n\n\n\nSe puede consultar la lista de paquetes disponibles, y en la sección Task Views se explorar los mismos por áreas de aplicación.\nLinks para exploración o chequeo de novedades de paquetes:\n\nRdocumentation\nMETACRAN\nr weekly\nr-bloggers\nrevolution analytics\nRStudio blog\n\n\n\nExisten varias vías de instalación de paquetes:\n\n\n\n\n\n\nVía consola: install.packages(\"nombre_del_paquete\") O manualmente en el panel de paquetes.\n\nUna vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión\n\nlibrary(nombre-del-paquete)\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nInstale el paquete pacman y explore su ayuda buscándolo en la lista de paquetes instalados en su PC"
+  },
+  {
+    "objectID": "1-intro.html#proyectos-de-rstudio",
+    "href": "1-intro.html#proyectos-de-rstudio",
+    "title": "1  Configuraciones básicas",
+    "section": "Proyectos de RStudio",
+    "text": "Proyectos de RStudio\nUna análisis debe poder ser retomado en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en sesiones anteriores. Para ello debemos manejarnos siempre bajo buenas prácticas de trabajo. Esto nos permitirá entender qué quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos reproducibles…\nVarios tipos de archivos serán creados y usados durante una sesión de R:\n\nUna forma práctica de administrar todos los objetos de una sesión es por medio del uso de proyectos de R Studio.\nPara ello vamos a crear un proyecto en algún directorio de nuestra PC llamado “r_intro_23”\n\n\n\n\n\n\n\n\n\nEs aconsejable organizar todos los objetos generados en nuestras sesiones de trabajo en sus carpetas correspondientes.\n\n\n\n\n\n\nNote\n\n\n\n\nCrear las siguientes carpetas: “plots”, “data”, “models”\n\n\n\nHabiendo creado estas carpetas debemos tener control total de donde se alojan los objetos que vayamos creando. Para ello es importante entender el concepto directorio de trabajo. Podemos consultarlo en la consola con la funcion getwd()"
+  },
+  {
+    "objectID": "1-intro.html#scripts",
+    "href": "1-intro.html#scripts",
+    "title": "1  Configuraciones básicas",
+    "section": "Scripts",
+    "text": "Scripts\n\n\n\n\n\nLos scripts son los archivos donde iremos generando el código a lo largo de nuestra sesión de trabajo. Estos pueden ser de texto plano .R (simil a un .txt) o bien enriquecidos con diferentes formatos de output (.html / .docx / .pdf), los cuales pueden ser .Rmd (R Markdown) o bien el recientemente incluído .qmd (Quarto).\nRStudio guardará automáticamente los contenidos del editor cuando salgas del programa, y los cargará automáticamente cuando vuelvas a abrirlo. De todas formas, es clave ir guardando los scripts a medida que vamos escribiéndolos.\n\n\n\n\n\n\nNote\n\n\n\n\nCrear un script “primer_script” en sus diferentes formatos .R y .qmd (simil a .Rmd)\n\nEn primer_script.R\n- ejecutemos plot(pressure) y guardemos el gráfico resultante en la carpeta correspondiente.\n(ejecutar con botón “Run”)\nEn primer_script.qmd\nComo dijimos este es uno de los tipos de scripts enriquecidos, es decir que, podemos incluir anotaciones en niveles jerárquicos (tipo word, o mejor dicho Markdown), es decir Títulos, subtítulos, sub-subtítulos, listas, tablas, imágenes, etc. A modo introductorio nos quedaremos con la distinción entre texto y código. Para este ultimo debemos insertar chunks manualmente o vía atajos de teclado “Ctrl + Alt + i”\n- ejecutemos data(pressure) y guardemos esos datos en su carpeta correspondiente write.csv(\"data/pressure.csv\")"
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "Referencias",
+    "section": "",
+    "text": "Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
   }
 ]

@@ -12,10 +12,11 @@ book:
   author: ""
   chapters:
     - index.qmd
-    # - part: "Sintaxis básica de R"
-    #   chapters:
-        # - data-terminology.qmd
-        # - data-ordinal.qmd
+    - part: "Semana 1"
+      chapters:
+        - 1-intro.qmd
+        # - 2-sintaxis.qmd
+        # - 3-data_type.qmd
     # - part: "Tidyverse"
     #   chapters: 
         # - temporal-dpc.qmd

@@ -1,0 +1,119 @@
+# Configuraciones básicas {#config_1}
+
+## Instalación {.unnumbered}
+
+1° [R](https://cran.r-project.org/)
+
+![](fig_1/r.png){fig-align="center" width="600px"}
+
+2° [R Studio](https://www.rstudio.com/products/rstudio/download/) (bajar la versión Free)
+
+![](fig_1/rstudio.png){fig-align="center" width="600px"}
+
+RStudio es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, o sea, **R Studio** es la interface (o carcasa) por medio de la cual se ejecutan acciones en **R** (motor).
+
+Configuraciones iniciales (sugeridas). Dirigirse a la sección "Tools/Global options"
+
+![](fig_1/config_saving.png){fig-align="center" width="500px"}
+
+## Paquetes de R {.unnumbered}
+
+Un **paquete** es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida, fácilmente accesible para R.
+
+La simple instalación de R trae consigo múltiples paquetes que permiten un funcionamiento básico de importación de datos, ajuste y evaluación de modelos estadísticos y representaciones gráficas. Sin embargo, la enorme potencia de R deriva de su capacidad de incorporar nuevas funciones generadas por su gran comunidad de usuarios.
+
+Un **repositorio** es un lugar donde se alojan los paquetes para que pueda instalarlos desde él. Los repositorios mas populares son:
+
+::: callout-important
+## Repositorios
+
+[CRAN](https://cran.r-project.org/): repositorio oficial. Es una red de servidores web mantenida por la comunidad R en todo el mundo. El Core Team de R lo coordina, y para que un paquete se publique aquí, debe pasar varias pruebas que aseguren el cumplimiento de las políticas de CRAN.
+
+[GITHUB](https://github.com/): probablemente el repositorio más popular para proyectos particulares de código abierto. No es específico de R (sin proceso de revisión asociado).
+
+[Bioconductor](https://www.bioconductor.org/): repositorio destinado a software de código abierto para bioinformática. Como CRAN, tiene sus propios procesos de presentación y revisión, y su comunidad es muy activa y tiene varias conferencias y reuniones al año.
+:::
+
+::: callout-tip
+Se puede consultar la [lista de paquetes disponibles](https://cran.r-project.org/web/packages/available_packages_by_date.html), y en la sección [Task Views](https://cran.r-project.org/web/views/) se explorar los mismos por áreas de aplicación.
+
+Links para exploración o chequeo de novedades de paquetes:
+
+-   [Rdocumentation](https://www.rdocumentation.org)
+
+-   [METACRAN](https://www.r-pkg.org/)
+
+-   [r weekly](https://rweekly.org/)
+
+-   [r-bloggers](https://www.r-bloggers.com/)
+
+-   [revolution analytics](https://blog.revolutionanalytics.com/)
+
+-   [RStudio blog](https://blog.rstudio.com/categories/packages)
+:::
+
+Existen varias vías de instalación de paquetes:
+
+![](fig_1/install.packages.png){fig-align="center" width="500px"}
+
+-   Vía consola: `install.packages("nombre_del_paquete")` O manualmente en el panel de paquetes.
+
+Una vez instalado, hay que cargar los paquetes que contienen las funciones que vayamos a usar en cada sesión
+
+```{r eval=FALSE}
+library(nombre-del-paquete)
+```
+
+![](fig_1/bulb.jpeg)
+
+::: callout-note
+-   Instale el paquete `pacman` y explore su ayuda buscándolo en la lista de paquetes instalados en su PC
+:::
+
+## Proyectos de RStudio {.unnumbered}
+
+Una análisis debe poder ser retomado en cualquier momento pudiendo darse por concluída cuando el trabajo es publicado. Hasta entonces debemos tener rápido acceso a todos los objetos creados en *sesiones* anteriores. Para ello debemos manejarnos siempre bajo *buenas prácticas* de trabajo. Esto nos permitirá entender qué quisimos hacer tiempo atrás, seremos intuitivos para encontrar archivos/objetos, y finalmente crearemos trabajos *reproducibles*...
+
+Varios tipos de archivos serán creados y usados durante una sesión de R:
+
+![](fig_1/workflow_completo.png)
+
+Una forma práctica de administrar todos los objetos de una sesión es por medio del uso de **proyectos de R Studio**.
+
+Para ello vamos a crear un proyecto en algún directorio de nuestra PC llamado "r_intro_23"
+
+```{r, echo=FALSE, eval=TRUE}
+vembedr::embed_youtube("5brYbPkzm4k")
+```
+
+Es aconsejable organizar todos los objetos generados en nuestras sesiones de trabajo en sus carpetas correspondientes.
+
+::: callout-note
+-   Crear las siguientes carpetas: "plots", "data", "models"
+:::
+
+Habiendo creado estas carpetas debemos tener control total de donde se alojan los objetos que vayamos creando. Para ello es importante entender el concepto **directorio de trabajo.** Podemos consultarlo en la consola con la funcion `getwd()`
+
+## Scripts {.unnumbered}
+
+![](fig_1/script_nuevo.png){fig-align="center"}
+
+Los scripts son los archivos donde iremos generando el código a lo largo de nuestra sesión de trabajo. Estos pueden ser de texto plano .R (simil a un .txt) o bien enriquecidos con diferentes formatos de output (.html / .docx / .pdf), los cuales pueden ser .Rmd (R Markdown) o bien el recientemente incluído .qmd (Quarto).
+
+RStudio guardará automáticamente los contenidos del editor cuando salgas del programa, y los cargará automáticamente cuando vuelvas a abrirlo. De todas formas, es clave ir guardando los scripts a medida que vamos escribiéndolos.
+
+::: callout-note
+-   Crear un script "primer_script" en sus diferentes formatos .R y .qmd (simil a .Rmd)
+
+En **primer_script.R**
+
+\- ejecutemos `plot(pressure)` y guardemos el gráfico resultante en la carpeta correspondiente.
+
+(ejecutar con botón "Run")
+
+En **primer_script.qmd**
+
+Como dijimos este es uno de los tipos de scripts enriquecidos, es decir que, podemos incluir anotaciones en niveles jerárquicos (tipo word, o mejor dicho [Markdown](https://markdownlivepreview.com/)), es decir Títulos, subtítulos, sub-subtítulos, listas, tablas, imágenes, etc. A modo introductorio nos quedaremos con la distinción entre texto y código. Para este ultimo debemos insertar **chunks** manualmente o vía atajos de teclado "Ctrl + Alt + i"
+
+\- ejecutemos `data(pressure)` y guardemos esos datos en su carpeta correspondiente `write.csv("data/pressure.csv")`
+:::

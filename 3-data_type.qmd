@@ -1,0 +1,295 @@
+# Tipos de datos
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+```
+
+En términos genéricos, todos los elementos que maneja R se consideran objetos: un valor numérico, un vector, una función, una base de datos, un gráfico, todos son *objetos*.
+
+Uno de los típicos errores que se nos presenta al usar R es el mal uso de las distintas clases de objetos que manipulamos en nuestras sesiones de trabajo.
+
+Para un procesamiento correcto, un lenguaje de programación debe saber qué se puede y qué no se puede hacer con un valor en particular. Por ejemplo, no se pueden hacer operaciones matemáticas con las palabras "hola" y "mundo". Del mismo modo, no puede cambiar los números 1 y -34.5 de minúsculas a mayúsculas. Debido a esto, R tiene una característica llamada tipos de datos.
+
+Principales tipos de datos que vamos a usar:
+
+```{r data_types, tidy=FALSE, eval=TRUE, echo = FALSE, results='asis'}
+tibble::tribble(
+  ~Clase,        ~Ejemplo,
+  "numérico",    "12.3, 5, 999",
+  "caracter",    "hola, JUAN",
+  "lógica",      "TRUE, FALSE",
+  "fecha",       "2021-05-06") %>% 
+  kable() %>%
+  kable_styling(full_width=F, font_size=15)
+```
+
+## Vectores
+
+La unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes clases.
+
+`vector <- c(Concatenación, de, elementos, atómicos)`
+
+```{r}
+raices_largo <- c(8.5, 9, 11)
+```
+
+Hay muchas funciones que nos permiten inspeccionar los datos. Una muy versatil es `str()`
+
+```{r}
+str(raices_largo)
+length(raices_largo)
+```
+
+Supongamos que "raices_largo" es una muestra de la variable largo de raiz de trigo en cm y nos interesaria algunas métricas
+
+```{r}
+summary(raices_largo)
+```
+
+...descomponiendo ´summary´
+
+-   Medidas de posición
+
+```{r}
+mean(raices_largo)
+median(raices_largo)
+quantile(raices_largo, 0.25)
+```
+
+-   Medidas de dispersión
+
+```{r}
+min(raices_largo)
+max(raices_largo)
+range(raices_largo)
+```
+
+```{r}
+var(raices_largo)
+sd(raices_largo) # sqrt(var(raices_largo))
+```
+
+[Coeficiente de variación](https://es.wikipedia.org/wiki/Coeficiente_de_variaci%C3%B3n)
+
+En estadística, cuando se desea hacer referencia a la relación entre el tamaño de la media y la variabilidad de la variable, se utiliza el coeficiente de variación (suele representarse por las siglas "C.V."). Es adimensional, o sea no tiene unidades y suele expresarse en %.
+
+```{r}
+cv <- sd(raices_largo) / mean(raices_largo) * 100
+cv
+```
+Ahora, imaginemos que el "cv" es una función que usaremos a diario en nuestro trabajo. Por lo tanto quisiéramos tenerla mas "a mano" para usarla en cualquier momento. 
+
+```{r}
+cv <- function(x){
+  sd(x)/mean(x)*100
+}
+
+raices_largo <- c(8.5, 9, 11)
+cv(raices_largo)
+```
+Ahora bien, supongamos que queremos tener esta función (y muchas otras mas, de mayor complejidad incluso) disponibles desde el inicio de nuestra sesión de trabajo... 
+Deberíamos "empaquetar" todas esas funciones y llamarlas con un breve código. 
+
+
+```{r}
+source("my_fun.R")
+```
+
+```{r}
+raices_largo - 1
+sum(raices_largo)
+cumsum(raices_largo)
+```
+## Caracter {.unnumbered}
+
+Almacena valores de "caracteres" o "cadenas" (en inglés "string"): pueden contener letras, números y símbolos. La forma más sencilla de indicar que un valor es de tipo carácter es colocar el valor entre comillas simples o dobles.
+
+```{r}
+vec_car <- c("Hola mundo", "2022-20-04", '2022')   
+str(vec_car)
+```
+
+## Lógicos {.unnumbered}
+
+El tipo de dato lógico o booleano es en computación aquel que puede representar valores de lógica binaria, esto es 2 valores: falso o verdadero
+
+```{r}
+vec_logi <- c(FALSE, TRUE, F, T) # logi <- false
+str(vec_logi)
+```
+
+## Fechas {.unnumbered}
+
+-   El formato default es yyyy-mm-dd
+
+```{r}
+vec_fechas <- as.Date(c("2007-06-22", "2004-02-13"))
+str(vec_fechas)
+vec_fechas - 1 
+```
+
+::: {#box1 .blue-box}
+-   Nosotros comunmente usamos 'dd/mm/yyyy'? debemos convertir:
+
+```{r}
+vec_fechas2 <- c("01/06/2020", "31/12/2020")
+str(vec_fechas2) # son caracteres!
+
+vec_fechas3 <- as.Date(vec_fechas2, "%d/%m/%Y") # con paquete base
+str(vec_fechas3)
+
+vec_fechas4 <- lubridate::dmy(vec_fechas2) # con lubridate!
+str(vec_fechas4)
+
+diff(vec_fechas4)
+```
+:::
+
+::: blue-box
+-   Forzando las clases explícitamente
+
+```{r}
+raices_car <- as.character(raices_largo)
+str(raices_car)
+```
+
+```{r}
+vec_logi2 <- as.logical(c(0,1))
+vec_logi2
+```
+
+```{r}
+vec_logi_num <- as.numeric(vec_logi)
+vec_logi_num
+```
+
+-   Existe una jerarquia a la hora de R tener que decidir de qué tipo de vector se trata ("piedra, papel o tijera")
+
+```{r}
+y1 <- c(1.7, "a")  ## character
+str(y1)
+
+y2 <- c(TRUE, "a") ## character
+str(y2)
+
+y3 <- c(TRUE, 0, 10)   ## numeric
+str(y3)
+```
+:::
+
+## Datos faltantes
+
+Se representan con un `NA`, para cualquier tipo de datos
+
+```{r}
+vec_num <- c(1, 5, NA)
+str(vec_num)
+length(vec_num)
+```
+
+## Factores
+
+En R las variables categóricas se almacenan como **factores** tanto sea para vectores que contienen caracteres o numéros. Uno de los usos más importantes de los factores es en el modelado estadístico, asumiendo un rol de variable categorica, diferente de las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: genotipos, bloques, etc.
+
+A diferencia de los vectores vistos anteriormente, todo factor tiene sus niveles (`levels`), que por default se ordenan alfabéticamente.
+
+```{r}
+geno <- c("control", "B35", "A12", "control", "A12", "B35", "A12", "B35", "control")
+str(geno)
+levels(geno)
+
+geno_f <- factor(geno)
+str(geno_f)
+```
+
+## Secuencias
+
+### Numéricas {.unnumbered}
+
+```{r}
+1:7  
+seq(from = 0, to = 20, #by=2) # 
+    length=4) 
+
+rep(1:3, times=3) #  , each=3   
+```
+
+### Letras {.unnumbered}
+
+```{r}
+LETTERS  
+rep(c("a","b", "c"), times=3) #  , each=3   
+```
+
+### Fechas {.unnumbered}
+
+```{r}
+seq(as.Date("2015-01-15"), as.Date("2015-12-15"), "1 month")
+```
+
+## Números aleatorios
+
+La generación de números aleatorios es en muchas ocasiones un requerimiento esencial en investigación científica. Proceder de este modo puede reducir cualquier sesgo generado por nuestra persona a la hora de seleccionar una muestra, o aplicar un tratamiento a una unidad experimental.
+
+-   Generar números enteros de modo aleatorio de una muestra determinada
+
+`sample()`
+
+```{r}
+set.seed(123)
+sample(1:30, size=10, replace=F) #sin reposición
+```
+
+-   Generar números aleatorios de una distribución específica de parámetros conocidos:
+
+`runif()` - números racionales aleatoriamente, uniformemente distribuidos en un intervalo
+
+```{r}
+num_unif <- runif(100, min=3, max=4)
+hist(num_unif)
+```
+
+`rnorm()` - números aleatorios, pertenecientes a una población con [distribución normal](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule), con parámetros μ y σ.
+
+```{r}
+num_norm <- rnorm(100, mean=70, sd=5) 
+hist(num_norm)
+```
+
+## Valores especiales
+
+Existen valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.
+
+-   NA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.
+
+```{r}
+y <- c(2, 4, NA, 6)
+is.na(y)
+```
+
+> Calcule el promedio de y (use la ayuda de R en caso necesario)`mean(y)`
+
+-   NaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1). Un NaN es un NA, pero no recíprocamente.
+
+```{r}
+0/0
+is.nan(0/0)
+is.na(0/0)
+```
+
+-   `NULL` es el vacío de R. Es como si el objeto no existiese
+
+```{r}
+a = NULL
+a
+```
+
+-   `Inf` (infinito). Es el resultado de operaciones matemáticas cuyo límite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10\^310. Acepta signo negativo -Inf.
+
+```{r}
+1/0
+1/Inf
+```
