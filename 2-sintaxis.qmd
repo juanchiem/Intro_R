@@ -140,7 +140,7 @@ nombre_funcion(argumentos)
 
 -   *Argumentos*: Un argumento es un marcador de posición. Cuando se invoca una función, se debe indicar valores a los argumentos. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.
 
-Algunos cálculos basados en funciones matemáticas. Son las mas simples, y no esta función no contienen argumentos. \[para chequear la info de la función, solo basta con seleccionar todos sus caracteres + F1\]
+Para chequear la info de la función, solo basta con **seleccionar todos sus caracteres + F1**
 
 ```{r}
 sqrt(3) 
@@ -148,7 +148,6 @@ sqrt(3)
 # 3^(1/2)
 log(10) # logaritmo natural
 exp(2.302585)
-# log(10, base=10)
 ```
 
 ::: callout-note
@@ -199,7 +198,7 @@ plot(pressure)
 
 4 - El punto y coma (;) actúa como separador de comandos aún en la misma línea del script!
 
-```{r}
+```{r eval=FALSE}
 pressure; plot(pressure)
 ```
 

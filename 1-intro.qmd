@@ -107,7 +107,7 @@ RStudio guardará automáticamente los contenidos del editor cuando salgas del p
 
 En **primer_script.R**
 
-\- ejecutemos `plot(pressure)` y guardemos el gráfico resultante en la carpeta correspondiente.
+\- ejecutemos `plot(pressure)` y guardemos el gráfico resultante en la carpeta correspondiente, con el nombre "press_vs_temp"
 
 (ejecutar con botón "Run")
 
@@ -115,5 +115,5 @@ En **primer_script.qmd**
 
 Como dijimos este es uno de los tipos de scripts enriquecidos, es decir que, podemos incluir anotaciones en niveles jerárquicos (tipo word, o mejor dicho [Markdown](https://markdownlivepreview.com/)), es decir Títulos, subtítulos, sub-subtítulos, listas, tablas, imágenes, etc. A modo introductorio nos quedaremos con la distinción entre texto y código. Para este ultimo debemos insertar **chunks** manualmente o vía atajos de teclado "Ctrl + Alt + i"
 
-\- ejecutemos `data(pressure)` y guardemos esos datos en su carpeta correspondiente `write.csv("data/pressure.csv")`
+\- ejecutemos plot(pressure) y guardemos el gráfico resultante en la carpeta correspondiente, con el nombre "press_vs_temp_2"
 :::

@@ -67,7 +67,112 @@
     "href": "1-intro.html#scripts",
     "title": "1  Configuraciones básicas",
     "section": "Scripts",
-    "text": "Scripts\n\n\n\n\n\nLos scripts son los archivos donde iremos generando el código a lo largo de nuestra sesión de trabajo. Estos pueden ser de texto plano .R (simil a un .txt) o bien enriquecidos con diferentes formatos de output (.html / .docx / .pdf), los cuales pueden ser .Rmd (R Markdown) o bien el recientemente incluído .qmd (Quarto).\nRStudio guardará automáticamente los contenidos del editor cuando salgas del programa, y los cargará automáticamente cuando vuelvas a abrirlo. De todas formas, es clave ir guardando los scripts a medida que vamos escribiéndolos.\n\n\n\n\n\n\nNote\n\n\n\n\nCrear un script “primer_script” en sus diferentes formatos .R y .qmd (simil a .Rmd)\n\nEn primer_script.R\n- ejecutemos plot(pressure) y guardemos el gráfico resultante en la carpeta correspondiente.\n(ejecutar con botón “Run”)\nEn primer_script.qmd\nComo dijimos este es uno de los tipos de scripts enriquecidos, es decir que, podemos incluir anotaciones en niveles jerárquicos (tipo word, o mejor dicho Markdown), es decir Títulos, subtítulos, sub-subtítulos, listas, tablas, imágenes, etc. A modo introductorio nos quedaremos con la distinción entre texto y código. Para este ultimo debemos insertar chunks manualmente o vía atajos de teclado “Ctrl + Alt + i”\n- ejecutemos data(pressure) y guardemos esos datos en su carpeta correspondiente write.csv(\"data/pressure.csv\")"
+    "text": "Scripts\n\n\n\n\n\nLos scripts son los archivos donde iremos generando el código a lo largo de nuestra sesión de trabajo. Estos pueden ser de texto plano .R (simil a un .txt) o bien enriquecidos con diferentes formatos de output (.html / .docx / .pdf), los cuales pueden ser .Rmd (R Markdown) o bien el recientemente incluído .qmd (Quarto).\nRStudio guardará automáticamente los contenidos del editor cuando salgas del programa, y los cargará automáticamente cuando vuelvas a abrirlo. De todas formas, es clave ir guardando los scripts a medida que vamos escribiéndolos.\n\n\n\n\n\n\nNote\n\n\n\n\nCrear un script “primer_script” en sus diferentes formatos .R y .qmd (simil a .Rmd)\n\nEn primer_script.R\n- ejecutemos plot(pressure) y guardemos el gráfico resultante en la carpeta correspondiente, con el nombre “press_vs_temp”\n(ejecutar con botón “Run”)\nEn primer_script.qmd\nComo dijimos este es uno de los tipos de scripts enriquecidos, es decir que, podemos incluir anotaciones en niveles jerárquicos (tipo word, o mejor dicho Markdown), es decir Títulos, subtítulos, sub-subtítulos, listas, tablas, imágenes, etc. A modo introductorio nos quedaremos con la distinción entre texto y código. Para este ultimo debemos insertar chunks manualmente o vía atajos de teclado “Ctrl + Alt + i”\n- ejecutemos plot(pressure) y guardemos el gráfico resultante en la carpeta correspondiente, con el nombre “press_vs_temp_2”"
+  },
+  {
+    "objectID": "2-sintaxis.html#r-calculadora",
+    "href": "2-sintaxis.html#r-calculadora",
+    "title": "2  Sintaxis",
+    "section": "R Calculadora",
+    "text": "R Calculadora\n\n4 + 9\n\n[1] 13\n\n\n\n4 - \n  3 *\n  1\n\n[1] 1\n\n\nCalculadora científica\n\n(4 + 5 ) * 7 - (36/18)^3\n\n[1] 55\n\n\nPodemos explorar los resultados de los términos con la ejecución parcial de la expresión…\nReto matemático que se volvió viral en las redes sociales\n\nExisten varias soluciones, según método que se aplique:\nPEMDAS = 1\nParéntesis &lt; Exponentes &lt; Multiplicación &lt; División &lt; Adición &lt; Sustracción\nBODMAS = 16\n“Brackets” - paréntesis/llaves &lt; “Orders” (potencias y raíces) &lt; División &lt; Multiplicación &lt; Adición &lt; Sustracción\n\n\n\n\n\n\nChallenge\n\n\n\nCómo opera R?\n\n\nEstilos de programación. Se puede decir que hay diferencia de estilos al programar: algunos adoptan sintaxis mas compacta y otros con mayor espaciamiento. Lo importante a tener en cuenta es que nuestros códigos deberían ser facilmente interpretados por otros.\n\n(3+(5*(2^2)))   # difícil de leer\n\n[1] 23\n\n3 + 5 * 2 ^ 2   # si se recuerdan las reglas, todo bien\n\n[1] 23\n\n3 + 5 * (2 ^ 2) # si se olvidan algunas reglas, esto podría ayudar\n\n[1] 23"
+  },
+  {
+    "objectID": "2-sintaxis.html#comparaciones-lógicas",
+    "href": "2-sintaxis.html#comparaciones-lógicas",
+    "title": "2  Sintaxis",
+    "section": "Comparaciones lógicas",
+    "text": "Comparaciones lógicas\n\n4 &gt; 3\n\n[1] TRUE\n\n4 == 4\n\n[1] TRUE\n\n4 != 4\n\n[1] FALSE\n\n4 != 3\n\n[1] TRUE\n\n1 &gt;= -9\n\n[1] TRUE\n\n\n\n\n\n\n\n\nChallenge\n\n\n\nRevise la Tablas resumen de operadores aritméticos y lógicos.\n\nQué concluye sobre la siguiente expresión?\n\n5 + 3 * 10 %/% == 15\n\nAgregue paréntesis para obtener un resultado contrario al anterior"
+  },
+  {
+    "objectID": "2-sintaxis.html#variables-y-asignaciones",
+    "href": "2-sintaxis.html#variables-y-asignaciones",
+    "title": "2  Sintaxis",
+    "section": "Variables y asignaciones",
+    "text": "Variables y asignaciones\nPodemos almacenar valores en variables usando el operador de asignación &lt;-\nEjecute el siguiente código y vea que ocurre en el environment (“memoria RAM”):\n\nx &lt;- 1/40\n\nEsta asignación no muestra el valor, sino que lo almacena para más adelante en algo llamado “variable”. Que contiene x?\n\nx\n\n[1] 0.025\n\n\n\n\n\n\n\n\nShortcuts - atajos\n\n\n\nCtrl + r ……. run code\nAlt - …… &lt;-\nCtrl + Alt + i …… insert chunk\n\n\nDe ahora en mas, x se puede usar en cualquier cálculo numérico\n\nx &lt;- x + 1 # observen cómo RStudio actualiza/sobrescribe x en la pestaña superior derecha\ny &lt;- x * 2\n\nEl lado derecho de la asignación puede ser cualquier expresión de R válida. La expresión del lado derecho se evalúa por completo antes de que se realice la asignación.\nTambién verán que es posible utilizar el operador = para la asignación\n\nx = 1/40\n\nEsta forma es menos común entre los usuarios R (se recomienda usar &lt;-, y reservar = para completar los argumentos de las funciones)."
+  },
+  {
+    "objectID": "2-sintaxis.html#funciones",
+    "href": "2-sintaxis.html#funciones",
+    "title": "2  Sintaxis",
+    "section": "Funciones",
+    "text": "Funciones\nComo dijimos, los paquetes son básicamente un conjunto de funciones generadas por los autores de los mismos pero el usuario puede crear sus propias funciones.\nComponentes de las funciones:\nnombre_funcion(argumentos)\n\nNombre: Generalmente, el nombre es intuitivo, por ejemplo, mean es la función que calcula la media, round es la función que redondea un número. (Como habrán notado R está en inglés)\nArgumentos: Un argumento es un marcador de posición. Cuando se invoca una función, se debe indicar valores a los argumentos. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.\n\nPara chequear la info de la función, solo basta con seleccionar todos sus caracteres + F1\n\nsqrt(3) \n\n[1] 1.732051\n\n# 3^0.5 \n# 3^(1/2)\nlog(10) # logaritmo natural\n\n[1] 2.302585\n\nexp(2.302585)\n\n[1] 9.999999\n\n\n\n\n\n\n\n\nChallenge\n\n\n\nEjecute en su script los 6 ejercicios del siguiente link\n\n\nFunciones básicas pero con argumentos\n\nRedondeo\n\n\nround(4.3478)  \n\n[1] 4\n\nround(4.3478, digits=3)  \n\n[1] 4.348\n\nround(3.5)\n\n[1] 4\n\nround(4.5)\n\n[1] 4\n\n# Pares para abajo, Impares para arriba\n\n\n\n\n\n\n\nTip\n\n\n\n1 - Espacios en blanco: podemos o no dejar espacios para que el código se pueda ordenar de forma adecuada y poder entenderse. Lo que no se puede es separar las letras componentes de objetos\n\nplot( pressure )\nplot(pressur e)\n\n2 - Se distinguen las mayúsculas y minúsculas (“case sensitive”): para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.\n\nPlot(pressure)\n\n3 - Se pueden incluir comentarios: como vimos anteriormente los comentarios se utilizan para añadir información en el código. De paso observamos que\n\nplot(pressur e) # da error\n\n# grafico press vs temp\nplot(pressure)\n\n4 - El punto y coma (;) actúa como separador de comandos aún en la misma línea del script!\n\npressure; plot(pressure)\n\n5 - Los nombres de las variables pueden contener letras, números, guiones bajos y puntos, pero NO PUEDEN:\n\ncomenzar con un número\ncontener espacios en absoluto\n\nCada uno adopta su propia forma para nombres largos de variables, por ej:\n\npuntos.entre.palabras\nguiones_bajos_entre_palabras\nMayúsculasMinúsculasParaSepararPalabras\n\nNo importa como lo adopten, pero es aconsejable ser consistente."
+  },
+  {
+    "objectID": "2-sintaxis.html#s.o.s.",
+    "href": "2-sintaxis.html#s.o.s.",
+    "title": "2  Sintaxis",
+    "section": "S.O.S.",
+    "text": "S.O.S.\n\nEn el mismo R: ?sd; ??sd; F1 sobre la función\n\n\nGooglear: r generate a sequence of uppercase letters\n\n\nStack Overflow en inglés / Stack Overflow en español / RStudio: comunidades altamente activas por los usuarios de R y otros lenguajes de programación.\nR Mailing Lists: especificas de cada área de la ciencia.\n\n¿Cómo hacer una buena pregunta en las comunidades?\n\nSer conciso pero gentil…\nSer reproducible: su código debe correr en cualquier máquina. La comunidad no irá a ayudarle si no pueden reproducir su error (detallar paquetes y versión de R en caso necesario)"
+  },
+  {
+    "objectID": "2-sintaxis.html#tablas_resumen",
+    "href": "2-sintaxis.html#tablas_resumen",
+    "title": "2  Sintaxis",
+    "section": "Tablas resumen",
+    "text": "Tablas resumen\n\n\n\nOperadores aritméticos\n\n\nOperador\nDetalle\n\n\n\n\n`x + y`\nSuma de x e y\n\n\n`x - y`\nResta de x menos y\n\n\n`x * y`\nMultiplicación\n\n\n`x / y`\nDivisión de x por y\n\n\n`x %/% y`\nParte entera de la división de x por y\n\n\n`x %% y`\nResto de la división de x por y\n\n\n`x ^ y`\nx elevado a y-ésima potencia (equivalente a **)\n\n\n\n\n\n\n\n\n\n\n\nOperadores lógicos\n\n\nOperador\nPrueba.lógica\n\n\n\n\nx &lt; y\nx menor que y?\n\n\nx &lt;= y\nx menor o igual que y?\n\n\nx &gt; y\nx mayor que y?\n\n\nx &gt;= y\nx mayor o igual que y?\n\n\nx == y\nx igual que y?\n\n\nx != y\nx diferente que y?\n\n\n\n\n\n\n\n \n\n\n\nFunciones matemáticas\n\n\nOperador\nDetalle\n\n\n\n\n`sqrt(x)`\nraiz de x\n\n\n`exp(y)`\nexponencial de y\n\n\n`log(x)`\nlogaritmo natural de x = ln\n\n\n`log10(x)`\nlogaritmo base 10 de x\n\n\n`sum(x)`\nsuma todos los elementos de x\n\n\n`prod(x)`\nproducto de todos los elementos de x\n\n\n`round(x, n)`\nredondea x a n-digitos\n\n\n\n\n\n\n\n \n\n\n\nAlgunos atajos comúnmente usados\n\n\nTeclas\nDetalle\n\n\n\n\nAlt+Shift+K\npanel de todos los atajos\n\n\nCtrl+Z / Ctrl+Shift+Z\nundo/redo\n\n\nAlt+ -\n&lt;-\n\n\nCtrl+r\ncorre la línea/bloque completa de código\n\n\nCtrl+l\nlimpia la consola\n\n\nCtrl+Shift+c\nsilencia la línea de código\n\n\nCtrl+Shift+d\nduplica la línea de código\n\n\nCtrl+i\nindexa el bloque de código"
+  },
+  {
+    "objectID": "3-data_type.html#vectores",
+    "href": "3-data_type.html#vectores",
+    "title": "3  Tipos de datos",
+    "section": "3.1 Vectores",
+    "text": "3.1 Vectores\nLa unidad básica de datos en R es un vector, los cuales pueden ser de diferentes clases. Los que más usaremos son las siguientes clases.\nvector &lt;- c(Concatenación, de, elementos, atómicos)\n\nraices_largo &lt;- c(8.5, 9, 11)\n\nHay muchas funciones que nos permiten inspeccionar los datos. Una muy versatil es str()\n\nstr(raices_largo)\n\n num [1:3] 8.5 9 11\n\nlength(raices_largo)\n\n[1] 3\n\n\nSupongamos que “raices_largo” es una muestra de la variable largo de raiz de trigo en cm y nos interesaria algunas métricas\n\nsummary(raices_largo)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   8.50    8.75    9.00    9.50   10.00   11.00 \n\n\n…descomponiendo ´summary´\n\nMedidas de posición\n\n\nmean(raices_largo)\n\n[1] 9.5\n\nmedian(raices_largo)\n\n[1] 9\n\nquantile(raices_largo, 0.25)\n\n 25% \n8.75 \n\n\n\nMedidas de dispersión\n\n\nmin(raices_largo)\n\n[1] 8.5\n\nmax(raices_largo)\n\n[1] 11\n\nrange(raices_largo)\n\n[1]  8.5 11.0\n\n\n\nvar(raices_largo)\n\n[1] 1.75\n\nsd(raices_largo) # sqrt(var(raices_largo))\n\n[1] 1.322876\n\n\nCoeficiente de variación\nEn estadística, cuando se desea hacer referencia a la relación entre el tamaño de la media y la variabilidad de la variable, se utiliza el coeficiente de variación (suele representarse por las siglas “C.V.”). Es adimensional, o sea no tiene unidades y suele expresarse en %.\n\ncv &lt;- sd(raices_largo) / mean(raices_largo) * 100\ncv\n\n[1] 13.92501\n\n\nAhora, imaginemos que el “cv” es una función que usaremos a diario en nuestro trabajo. Por lo tanto quisiéramos tenerla mas “a mano” para usarla en cualquier momento.\n\ncv &lt;- function(x){\n  sd(x)/mean(x)*100\n}\n\nraices_largo &lt;- c(8.5, 9, 11)\ncv(raices_largo)\n\n[1] 13.92501\n\n\nAhora bien, supongamos que queremos tener esta función (y muchas otras mas, de mayor complejidad incluso) disponibles desde el inicio de nuestra sesión de trabajo… Deberíamos “empaquetar” todas esas funciones y llamarlas con un breve código.\n\nsource(\"my_fun.R\")\n\n\nraices_largo - 1\n\n[1]  7.5  8.0 10.0\n\nsum(raices_largo)\n\n[1] 28.5\n\ncumsum(raices_largo)\n\n[1]  8.5 17.5 28.5"
+  },
+  {
+    "objectID": "3-data_type.html#caracter",
+    "href": "3-data_type.html#caracter",
+    "title": "3  Tipos de datos",
+    "section": "Caracter",
+    "text": "Caracter\nAlmacena valores de “caracteres” o “cadenas” (en inglés “string”): pueden contener letras, números y símbolos. La forma más sencilla de indicar que un valor es de tipo carácter es colocar el valor entre comillas simples o dobles.\n\nvec_car &lt;- c(\"Hola mundo\", \"2022-20-04\", '2022')   \nstr(vec_car)\n\n chr [1:3] \"Hola mundo\" \"2022-20-04\" \"2022\""
+  },
+  {
+    "objectID": "3-data_type.html#lógicos",
+    "href": "3-data_type.html#lógicos",
+    "title": "3  Tipos de datos",
+    "section": "Lógicos",
+    "text": "Lógicos\nEl tipo de dato lógico o booleano es en computación aquel que puede representar valores de lógica binaria, esto es 2 valores: falso o verdadero\n\nvec_logi &lt;- c(FALSE, TRUE, F, T) # logi &lt;- false\nstr(vec_logi)\n\n logi [1:4] FALSE TRUE FALSE TRUE"
+  },
+  {
+    "objectID": "3-data_type.html#fechas",
+    "href": "3-data_type.html#fechas",
+    "title": "3  Tipos de datos",
+    "section": "Fechas",
+    "text": "Fechas\n\nEl formato default es yyyy-mm-dd\n\n\nvec_fechas &lt;- as.Date(c(\"2007-06-22\", \"2004-02-13\"))\nstr(vec_fechas)\n\n Date[1:2], format: \"2007-06-22\" \"2004-02-13\"\n\nvec_fechas - 1 \n\n[1] \"2007-06-21\" \"2004-02-12\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nNosotros comúnmente usamos ‘dd/mm/yyyy’, como podemos convertir:\n\nvec_fechas2 &lt;- c(\"01/06/2020\", \"31/12/2020\")\nstr(vec_fechas2) # son caracteres!\n\n chr [1:2] \"01/06/2020\" \"31/12/2020\"\n\nvec_fechas3 &lt;- as.Date(vec_fechas2, \"%d/%m/%Y\") # con paquete base\nstr(vec_fechas3)\n\n Date[1:2], format: \"2020-06-01\" \"2020-12-31\"\n\nvec_fechas4 &lt;- lubridate::dmy(vec_fechas2) # con lubridate!\nstr(vec_fechas4)\n\n Date[1:2], format: \"2020-06-01\" \"2020-12-31\"\n\ndiff(vec_fechas4)\n\nTime difference of 213 days\n\n\n\n\n\nForzando las clases explícitamente\n\n\nraices_car &lt;- as.character(raices_largo)\nstr(raices_car)\n\n chr [1:3] \"8.5\" \"9\" \"11\"\n\n\n\nvec_logi2 &lt;- as.logical(c(0,1))\nvec_logi2\n\n[1] FALSE  TRUE\n\n\n\nvec_logi_num &lt;- as.numeric(vec_logi)\nvec_logi_num\n\n[1] 0 1 0 1\n\n\n\nExiste una jerarquia a la hora de R tener que decidir de qué tipo de vector se trata (“piedra, papel o tijera”)\n\n\ny1 &lt;- c(1.7, \"a\")  ## character\nstr(y1)\n\n chr [1:2] \"1.7\" \"a\"\n\ny2 &lt;- c(TRUE, \"a\") ## character\nstr(y2)\n\n chr [1:2] \"TRUE\" \"a\"\n\ny3 &lt;- c(TRUE, 0, 10)   ## numeric\nstr(y3)\n\n num [1:3] 1 0 10\n\n\n:::"
+  },
+  {
+    "objectID": "3-data_type.html#datos-faltantes",
+    "href": "3-data_type.html#datos-faltantes",
+    "title": "3  Tipos de datos",
+    "section": "3.2 Datos faltantes",
+    "text": "3.2 Datos faltantes\nSe representan con un NA, para cualquier tipo de datos\n\nvec_num &lt;- c(1, 5, NA)\nstr(vec_num)\n\n num [1:3] 1 5 NA\n\nlength(vec_num)\n\n[1] 3"
+  },
+  {
+    "objectID": "3-data_type.html#factores",
+    "href": "3-data_type.html#factores",
+    "title": "3  Tipos de datos",
+    "section": "3.2 Factores",
+    "text": "3.2 Factores\nEn R las variables categóricas se almacenan como factores tanto sea para vectores que contienen caracteres o numéros. Uno de los usos más importantes de los factores es en el modelado estadístico, asumiendo un rol de variable categorica, diferente de las variables contínuas. Claro ejemplo de factores son los tratamientos, por ej: genotipos, bloques, etc.\nA diferencia de los vectores vistos anteriormente, todo factor tiene sus niveles (levels), que por default se ordenan alfabéticamente.\n\ngeno &lt;- c(\"control\", \"B35\", \"A12\", \"control\", \"A12\", \"B35\", \"A12\", \"B35\", \"control\")\nstr(geno)\n\n chr [1:9] \"control\" \"B35\" \"A12\" \"control\" \"A12\" \"B35\" \"A12\" \"B35\" ...\n\nlevels(geno)\n\nNULL\n\ngeno_f &lt;- factor(geno)\nstr(geno_f)\n\n Factor w/ 3 levels \"A12\",\"B35\",\"control\": 3 2 1 3 1 2 1 2 3"
+  },
+  {
+    "objectID": "3-data_type.html#secuencias",
+    "href": "3-data_type.html#secuencias",
+    "title": "3  Tipos de datos",
+    "section": "3.3 Secuencias",
+    "text": "3.3 Secuencias\n\nNuméricas\n\n1:7  \n\n[1] 1 2 3 4 5 6 7\n\nseq(from = 0, to = 20, #by=2) # \n    length=4) \n\n[1]  0.000000  6.666667 13.333333 20.000000\n\nrep(1:3, times=3) #  , each=3   \n\n[1] 1 2 3 1 2 3 1 2 3\n\n\n\n\nLetras\n\nLETTERS  \n\n [1] \"A\" \"B\" \"C\" \"D\" \"E\" \"F\" \"G\" \"H\" \"I\" \"J\" \"K\" \"L\" \"M\" \"N\" \"O\" \"P\" \"Q\" \"R\" \"S\"\n[20] \"T\" \"U\" \"V\" \"W\" \"X\" \"Y\" \"Z\"\n\nrep(c(\"a\",\"b\", \"c\"), times=3) #  , each=3   \n\n[1] \"a\" \"b\" \"c\" \"a\" \"b\" \"c\" \"a\" \"b\" \"c\"\n\n\n\n\nFechas\n\nseq(as.Date(\"2015-01-15\"), as.Date(\"2015-12-15\"), \"1 month\")\n\n [1] \"2015-01-15\" \"2015-02-15\" \"2015-03-15\" \"2015-04-15\" \"2015-05-15\"\n [6] \"2015-06-15\" \"2015-07-15\" \"2015-08-15\" \"2015-09-15\" \"2015-10-15\"\n[11] \"2015-11-15\" \"2015-12-15\""
+  },
+  {
+    "objectID": "3-data_type.html#números-aleatorios",
+    "href": "3-data_type.html#números-aleatorios",
+    "title": "3  Tipos de datos",
+    "section": "3.4 Números aleatorios",
+    "text": "3.4 Números aleatorios\nLa generación de números aleatorios es en muchas ocasiones un requerimiento esencial en investigación científica. Proceder de este modo puede reducir cualquier sesgo generado por nuestra persona a la hora de seleccionar una muestra, o aplicar un tratamiento a una unidad experimental.\n\nGenerar números enteros de modo aleatorio de una muestra determinada\n\nsample()\n\nset.seed(123)\nsample(1:30, size=10, replace=F) #sin reposición\n\n [1] 15 19 14  3 10 18 22 11  5 20\n\n\n\nGenerar números aleatorios de una distribución específica de parámetros conocidos:\n\nrunif() - números racionales aleatoriamente, uniformemente distribuidos en un intervalo\n\nnum_unif &lt;- runif(100, min=3, max=4)\nhist(num_unif)\n\n\n\n\nrnorm() - números aleatorios, pertenecientes a una población con distribución normal, con parámetros μ y σ.\n\nnum_norm &lt;- rnorm(100, mean=70, sd=5) \nhist(num_norm)"
+  },
+  {
+    "objectID": "3-data_type.html#valores-especiales",
+    "href": "3-data_type.html#valores-especiales",
+    "title": "3  Tipos de datos",
+    "section": "3.5 Valores especiales",
+    "text": "3.5 Valores especiales\nExisten valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.\n\nNA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.\n\n\ny &lt;- c(2, 4, NA, 6)\nis.na(y)\n\n[1] FALSE FALSE  TRUE FALSE\n\nlength(y)\n\n[1] 4\n\n\n\nCalcule el promedio de y (use la ayuda de R en caso necesario)mean(y)\n\n\nNaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1). Un NaN es un NA, pero no recíprocamente.\n\n\n0/0\n\n[1] NaN\n\nis.nan(0/0)\n\n[1] TRUE\n\nis.na(0/0)\n\n[1] TRUE\n\n\n\nNULL es el vacío de R. Es como si el objeto no existiese\n\n\na = NULL\na\n\nNULL\n\n\n\nInf (infinito). Es el resultado de operaciones matemáticas cuyo límite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.\n\n\n1/0\n\n[1] Inf\n\n1/Inf\n\n[1] 0"
   },
   {
     "objectID": "referencias.html",

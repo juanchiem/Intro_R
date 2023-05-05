@@ -80,7 +80,8 @@ En estadística, cuando se desea hacer referencia a la relación entre el tamañ
 cv <- sd(raices_largo) / mean(raices_largo) * 100
 cv
 ```
-Ahora, imaginemos que el "cv" es una función que usaremos a diario en nuestro trabajo. Por lo tanto quisiéramos tenerla mas "a mano" para usarla en cualquier momento. 
+
+Ahora, imaginemos que el "cv" es una función que usaremos a diario en nuestro trabajo. Por lo tanto quisiéramos tenerla mas "a mano" para usarla en cualquier momento.
 
 ```{r}
 cv <- function(x){
@@ -90,9 +91,8 @@ cv <- function(x){
 raices_largo <- c(8.5, 9, 11)
 cv(raices_largo)
 ```
-Ahora bien, supongamos que queremos tener esta función (y muchas otras mas, de mayor complejidad incluso) disponibles desde el inicio de nuestra sesión de trabajo... 
-Deberíamos "empaquetar" todas esas funciones y llamarlas con un breve código. 
 
+Ahora bien, supongamos que queremos tener esta función (y muchas otras mas, de mayor complejidad incluso) disponibles desde el inicio de nuestra sesión de trabajo... Deberíamos "empaquetar" todas esas funciones y llamarlas con un breve código.
 
 ```{r}
 source("my_fun.R")
@@ -103,6 +103,7 @@ raices_largo - 1
 sum(raices_largo)
 cumsum(raices_largo)
 ```
+
 ## Caracter {.unnumbered}
 
 Almacena valores de "caracteres" o "cadenas" (en inglés "string"): pueden contener letras, números y símbolos. La forma más sencilla de indicar que un valor es de tipo carácter es colocar el valor entre comillas simples o dobles.
@@ -131,8 +132,8 @@ str(vec_fechas)
 vec_fechas - 1 
 ```
 
-::: {#box1 .blue-box}
--   Nosotros comunmente usamos 'dd/mm/yyyy'? debemos convertir:
+::: callout-note
+Nosotros comúnmente usamos 'dd/mm/yyyy', como podemos convertir:
 
 ```{r}
 vec_fechas2 <- c("01/06/2020", "31/12/2020")
@@ -148,7 +149,6 @@ diff(vec_fechas4)
 ```
 :::
 
-::: blue-box
 -   Forzando las clases explícitamente
 
 ```{r}
@@ -178,17 +178,8 @@ str(y2)
 y3 <- c(TRUE, 0, 10)   ## numeric
 str(y3)
 ```
+
 :::
-
-## Datos faltantes
-
-Se representan con un `NA`, para cualquier tipo de datos
-
-```{r}
-vec_num <- c(1, 5, NA)
-str(vec_num)
-length(vec_num)
-```
 
 ## Factores
 
@@ -268,6 +259,7 @@ Existen valores reservados para representar datos faltantes, infinitos, e indefi
 ```{r}
 y <- c(2, 4, NA, 6)
 is.na(y)
+length(y)
 ```
 
 > Calcule el promedio de y (use la ayuda de R en caso necesario)`mean(y)`

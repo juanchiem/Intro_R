@@ -15,8 +15,8 @@ book:
     - part: "Semana 1"
       chapters:
         - 1-intro.qmd
-        # - 2-sintaxis.qmd
-        # - 3-data_type.qmd
+        - 2-sintaxis.qmd
+        - 3-data_type.qmd
     # - part: "Tidyverse"
     #   chapters: 
         # - temporal-dpc.qmd

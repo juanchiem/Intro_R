@@ -1,0 +1,25 @@
+Hola gente querida como estan! Bienvenidos una vez mas!
+Esperamos que se encuentren muy bien y que hayan podido instalar correctamente R y RStudio en sus computadoras. Si tienen alguna dificultad, no duden en escribirnos y estaremos encantados de poder asistirlos.
+
+Durante esta primera semana:
+- exploraremos RStudio como interfaz entre los usuarios y R,
+- aprenderemos las bases del lenguaje de programación en R y
+- trataremos de descubrir qué hay detrás del código que hace que todo funcione.
+
+Reflexionemos brevemente sobre este cambio de era que estamos vivenciando en relación a la IA.
+
+No se sorprendan si en un futuro próximo podremos indicar oralmente a la máquina lo que necesitemos hacer y esta lo interpretará, generará el código necesario, y finalmente, ejecutará la acción que le hayamos pedido.
+Por ejemplo, podríamos pedirle:
+- importá los datos de un archivo Excel,
+- explorá y resumí el dataset importado
+- visualizá las variables numéricas en función de eventuales tratamientos
+- ajustá un modelo considerando el diseño experimental de mi ensayo, y finalmente
+- generá una tabla de presentación de resultados con sus conclusiones...
+
+Todo esto es inevitable! Lo que nos diferenciará, es saber que y como pedir las cosas. En fin...Volvamos al presente!
+ 
+Es importante recordar que un análisis debería ser retomado en cualquier momento y solo se dará por concluido cuando nuestros hallazgos sean comunicados.
+Por lo tanto, es esencial tener acceso rápido a todos los objetos creados en sesiones anteriores.
+Para ello debemos trabajar bajo buenas prácticas de organización y documentación de nuestro trabajo.
+Esto nos permitirá ser reproducibles tanto horizontal como verticalmente, es decir, con cualquier persona que quiera reproducir nuestro análisis o con nosotros mismos hacia el futuro.
+Veamos como podemos apuntar hacia eso con R!
