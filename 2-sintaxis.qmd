@@ -69,14 +69,16 @@ Estilos de programación. Se puede decir que hay diferencia de estilos al progra
 ```
 
 ::: callout-note
+
 ## Challenge
 
 Revise la [Tablas resumen](#tablas_resumen) de operadores aritméticos y lógicos.
 
 a.  Qué concluye sobre la siguiente expresión?
 
-5 + 3 \* 10 %/% == 15
-
+```{r}
+5 + 3 * 10 %/% 3 == 15
+```
 b.  Agregue paréntesis para obtener un resultado contrario al anterior
 :::
 

@@ -81,7 +81,7 @@
     "href": "2-sintaxis.html#comparaciones-lógicas",
     "title": "2  Sintaxis",
     "section": "Comparaciones lógicas",
-    "text": "Comparaciones lógicas\n\n4 &gt; 3\n\n[1] TRUE\n\n4 == 4\n\n[1] TRUE\n\n4 != 4\n\n[1] FALSE\n\n4 != 3\n\n[1] TRUE\n\n1 &gt;= -9\n\n[1] TRUE\n\n\n\n\n\n\n\n\nChallenge\n\n\n\nRevise la Tablas resumen de operadores aritméticos y lógicos.\n\nQué concluye sobre la siguiente expresión?\n\n5 + 3 * 10 %/% == 15\n\nAgregue paréntesis para obtener un resultado contrario al anterior"
+    "text": "Comparaciones lógicas\n\n4 &gt; 3\n\n[1] TRUE\n\n4 == 4\n\n[1] TRUE\n\n4 != 4\n\n[1] FALSE\n\n4 != 3\n\n[1] TRUE\n\n1 &gt;= -9\n\n[1] TRUE\n\n\n\n\n\n\n\n\nChallenge\n\n\n\nRevise la Tablas resumen de operadores aritméticos y lógicos.\n\nQué concluye sobre la siguiente expresión?\n\n\n5 + 3 * 10 %/% 3 == 15\n\n[1] FALSE\n\n\n\nAgregue paréntesis para obtener un resultado contrario al anterior"
   },
   {
     "objectID": "2-sintaxis.html#variables-y-asignaciones",
@@ -138,13 +138,6 @@
     "title": "3  Tipos de datos",
     "section": "Fechas",
     "text": "Fechas\n\nEl formato default es yyyy-mm-dd\n\n\nvec_fechas &lt;- as.Date(c(\"2007-06-22\", \"2004-02-13\"))\nstr(vec_fechas)\n\n Date[1:2], format: \"2007-06-22\" \"2004-02-13\"\n\nvec_fechas - 1 \n\n[1] \"2007-06-21\" \"2004-02-12\"\n\n\n\n\n\n\n\n\nNote\n\n\n\nNosotros comúnmente usamos ‘dd/mm/yyyy’, como podemos convertir:\n\nvec_fechas2 &lt;- c(\"01/06/2020\", \"31/12/2020\")\nstr(vec_fechas2) # son caracteres!\n\n chr [1:2] \"01/06/2020\" \"31/12/2020\"\n\nvec_fechas3 &lt;- as.Date(vec_fechas2, \"%d/%m/%Y\") # con paquete base\nstr(vec_fechas3)\n\n Date[1:2], format: \"2020-06-01\" \"2020-12-31\"\n\nvec_fechas4 &lt;- lubridate::dmy(vec_fechas2) # con lubridate!\nstr(vec_fechas4)\n\n Date[1:2], format: \"2020-06-01\" \"2020-12-31\"\n\ndiff(vec_fechas4)\n\nTime difference of 213 days\n\n\n\n\n\nForzando las clases explícitamente\n\n\nraices_car &lt;- as.character(raices_largo)\nstr(raices_car)\n\n chr [1:3] \"8.5\" \"9\" \"11\"\n\n\n\nvec_logi2 &lt;- as.logical(c(0,1))\nvec_logi2\n\n[1] FALSE  TRUE\n\n\n\nvec_logi_num &lt;- as.numeric(vec_logi)\nvec_logi_num\n\n[1] 0 1 0 1\n\n\n\nExiste una jerarquia a la hora de R tener que decidir de qué tipo de vector se trata (“piedra, papel o tijera”)\n\n\ny1 &lt;- c(1.7, \"a\")  ## character\nstr(y1)\n\n chr [1:2] \"1.7\" \"a\"\n\ny2 &lt;- c(TRUE, \"a\") ## character\nstr(y2)\n\n chr [1:2] \"TRUE\" \"a\"\n\ny3 &lt;- c(TRUE, 0, 10)   ## numeric\nstr(y3)\n\n num [1:3] 1 0 10\n\n\n:::"
-  },
-  {
-    "objectID": "3-data_type.html#datos-faltantes",
-    "href": "3-data_type.html#datos-faltantes",
-    "title": "3  Tipos de datos",
-    "section": "3.2 Datos faltantes",
-    "text": "3.2 Datos faltantes\nSe representan con un NA, para cualquier tipo de datos\n\nvec_num &lt;- c(1, 5, NA)\nstr(vec_num)\n\n num [1:3] 1 5 NA\n\nlength(vec_num)\n\n[1] 3"
   },
   {
     "objectID": "3-data_type.html#factores",

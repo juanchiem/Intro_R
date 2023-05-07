@@ -318,7 +318,12 @@ Challenge
 <ol type="a">
 <li>Qué concluye sobre la siguiente expresión?</li>
 </ol>
-<p>5 + 3 * 10 %/% == 15</p>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-8_36fa55b39a3e376b74b043cb6d95bd49">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
 <ol start="2" type="a">
 <li>Agregue paréntesis para obtener un resultado contrario al anterior</li>
 </ol>
@@ -329,12 +334,12 @@ Challenge
 <h2 class="unnumbered anchored" data-anchor-id="variables-y-asignaciones">Variables y asignaciones</h2>
 <p>Podemos almacenar valores en variables usando el operador de asignación <code>&lt;-</code></p>
 <p>Ejecute el siguiente código y vea que ocurre en el <strong>environment</strong> (“memoria RAM”):</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-9_97a1c6439c5267f6dde3534ea23d6de8">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-10_48ebc7c3bfd0c8d6d6dcd4fb3b9e135c">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esta asignación no muestra el valor, sino que lo almacena para más adelante en algo llamado “variable”. Que contiene x?</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-10_e4af32f273b549f9583bb16c78e79d3e">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-11_7f8a03abc480ec7325dda23bcb33af88">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.025</code></pre>
 </div>
@@ -355,14 +360,14 @@ Shortcuts - atajos
 </div>
 </div>
 <p>De ahora en mas, <em>x</em> se puede usar en cualquier cálculo numérico</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-11_354d428186d05ed84d7842ba51e8c0b0">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="co"># observen cómo RStudio actualiza/sobrescribe x en la pestaña superior derecha</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-12_1da1fca50a0726c49aa52f0348b80a7e">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="co"># observen cómo RStudio actualiza/sobrescribe x en la pestaña superior derecha</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>El lado derecho de la asignación puede ser cualquier expresión de R válida. La expresión del lado derecho se evalúa por completo antes de que se realice la asignación.</p>
 <p>También verán que es posible utilizar el operador = para la asignación</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-12_524d6aac28bf7d4c224775507047de59">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-13_c68b0d908d459839292b5eb70d22ab03">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esta forma es menos común entre los usuarios R (se recomienda usar <code>&lt;-</code>, y reservar <code>=</code> para completar los argumentos de las funciones).</p>
 </section>
@@ -376,18 +381,18 @@ Shortcuts - atajos
 <li><p><em>Argumentos</em>: Un argumento es un marcador de posición. Cuando se invoca una función, se debe indicar valores a los argumentos. Los argumentos son opcionales; es decir, una función puede no contener argumentos. También los argumentos pueden tener valores por defecto.</p></li>
 </ul>
 <p>Para chequear la info de la función, solo basta con <strong>seleccionar todos sus caracteres + F1</strong></p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-13_0beec10ac7c45d486b5c7e7a7bfbb6dd">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-14_d8e8ed5c1301d17d973ac0093880c190">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.732051</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3^0.5 </span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3^(1/2)</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># logaritmo natural</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3^0.5 </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3^(1/2)</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># logaritmo natural</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.302585</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">2.302585</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fl">2.302585</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.999999</code></pre>
 </div>
@@ -409,24 +414,24 @@ Challenge
 <ul>
 <li>Redondeo</li>
 </ul>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-15_3cd7da8933b44fa17aff0525c4242a15">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.3478</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-16_127b5fa0cf82214a1bda23f9266d03cf">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.3478</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.3478</span>, <span class="at">digits=</span><span class="dv">3</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.3478</span>, <span class="at">digits=</span><span class="dv">3</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.348</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">4.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pares para abajo, Impares para arriba</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pares para abajo, Impares para arriba</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -439,24 +444,24 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>1 - Espacios en blanco: podemos o no dejar espacios para que el código se pueda ordenar de forma adecuada y poder entenderse. Lo que no se puede es separar las letras componentes de objetos</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-16_79c4c942d68026a01dce9f5b88c07361">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( pressure )</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressur e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-17_f2fca43ae9355c79401398e4efe57431">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( pressure )</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressur e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>2 - Se distinguen las mayúsculas y minúsculas (“case sensitive”): para variables en el código, podemos crear diferentes variables con nombres iguales pero alternando mayúsculas y minúsculas.</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-17_2ee3b2fd2b8834993cf6428a2f37c534">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-18_02ee85c20245862f22b7b2969d2ee66c">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>3 - Se pueden incluir comentarios: como vimos anteriormente los comentarios se utilizan para añadir información en el código. De paso observamos que</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-18_28ad3dd145287b630534d02e725864f5">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressur e) <span class="co"># da error</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico press vs temp</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-19_8b93640aa71e292f8f9b38a20183c260">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressur e) <span class="co"># da error</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico press vs temp</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>4 - El punto y coma (;) actúa como separador de comandos aún en la misma línea del script!</p>
-<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-19_40fadc9d6e59f9c21bee821b5ddf916b">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pressure; <span class="fu">plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="2-sintaxis_cache/html/unnamed-chunk-20_91e959dda713a44106b8a0ab2aa72c9d">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pressure; <span class="fu">plot</span>(pressure)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>5 - Los nombres de las variables pueden contener letras, números, guiones bajos y puntos, pero <em>NO PUEDEN</em>:</p>
 <ul>
