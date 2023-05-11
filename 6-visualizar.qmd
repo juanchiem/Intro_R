@@ -1,0 +1,266 @@
+```{r, include = F}
+knitr::opts_chunk$set(echo = T, eval = F)
+```
+
+# Visualización
+
+## ggplot {.unnumbered}
+
+Gra
+
+El paquete ggplot2 tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios así como crear figuras complejas, de alta calidad (con fines de publicaciones científicas, por ej).
+
+Tiene su propia gramática (*"Grammar of Graphics"*): **"suma de capas"**
+
+![](fig_2/capas.png){width="400px"}
+
+-   Salvo la primera (que debe ser `ggplot()`), las capas no tienen un orden estricto
+
+-   Las capas se van agregando con un símbolo `+`
+
+-   Un mismo gráfico acepta tomar información de distintos datasets
+
+Las capas básicas son:
+
+-   **data** (`ggplot()`): inicializa un objeto gráfico de `ggplot`
+
+-   **aesthetics** (`aes()`): "Algo que se puede ver" Dentro de la capa `aes` debemos indicar que a que variable se atribuyen los diferentes atributos:
+
+    -   mapeo de variables (ejes `x` e `y`)
+    -   color exterior de los objetos o de las líneas (`col`)
+    -   color de relleno (`fill`)
+    -   forma de los puntos (`shape`)
+    -   tipo de línea (`linetype`)
+    -   tamaño de los puntos (`size`)
+
+-  **geometrías** (`geom_`): formas geométricas para representar las observaciones (dan el nombre al tipo de gráfico: gráfico de dispersión, boxplot, histograma, etc...)
+
+    -   geom_point()
+    -   geom_smooth()
+    -   geom_boxplot()
+    -   [lista de "geoms"](https://ggplot2.tidyverse.org/reference/#section-layer-geoms)\
+
+Otras capas importantes:
+
+-   **facetas** (`facet_x()`): "paneles de compartimentalización" de un mismo gráfico
+
+    -   facet_wrap(): paneles contiguos
+    -   facets_grid(): paneles tipo grilla
+    
+- **themes** combinación de colores
+
+- **labs** nombres detallados de ejes, leyendas, titulos, etc.. 
+
+
+Ejemplo de visualización con `iris`
+
+```{r, eval=F}
+library(tidyverse)
+```
+
+También necesitaremos:
+
+```{r}
+pacman::p_load(Hmisc,     # para cálculos dentro de los mismas capas 
+               patchwork  # ensamblar multiples graficos
+               )
+```
+
+## Ambas variables contínuas
+
+```{r}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)
+
+# también podán encontrar
+# ggplot(iris, aes(x = Sepal.Length, y = Petal.Length))
+```
+
+### geoms
+
+Objetos geométricos. Son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La [lista de "geoms"](https://ggplot2.tidyverse.org/reference/#section-layer-geoms) aumenta día a día.
+
+```{r}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point()
+```
+
+```{r}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point(aes(color = Species))
+```
+
+```{r}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point(aes(color = Species))+ 
+  geom_smooth()
+```
+
+```{r}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point()+
+  geom_smooth()
+```
+
+### facets
+
+Las facetas o "facets" permiten dividir el mismo gráfico en múltiples paneles asociados a los niveles de un factor.
+
+```{r, eval=F}
+iris %>% 
+  ggplot() +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  facet_wrap(~Species)
+```
+
+### theme
+
+Los temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw().
+
+```{r, eval=F}
+ggplot(iris) +
+  aes(x = Sepal.Length, y = Petal.Length)+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  facet_wrap(~Species) + 
+  theme_bw()
+```
+
+### ggsave
+
+```{r}
+ggsave(last_plot(), file="plots/iris_smooth.tiff", 
+       w=80, h=60, units="mm", dpi=300)
+```
+
+## Variable continua vs factor
+
+Los gráficos de barra, ampliamente usados en publicaciones científicas, son cada vez más criticados por "ocultar" la naturaleza de las observaciones @doi:10.1111/j.1476-5381.2011.01251.x; @10.1371/journal.pbio.1002128
+
+![Many different datasets can lead to the same bar graph](fig_2/plos_bars.png){fig-alt="@10.1111/j.1476-5381.2011.01251.x"}
+
+A continuación presentamos algunas opciones gráficas que surgen de la combinación de medidas de posición y de dispersión.
+
+```{r, eval=F}
+# Aprovechamos para customizar el `theme` a nuestro gusto y agregar algunos detalles:
+p0 <- iris %>% 
+  ggplot() +
+  aes(x = Species, y = Petal.Length)+
+  labs(x = "Iris species", y ="Sepal length (cm)") + 
+  theme_light(base_size = 10)
+p0
+```
+
+### Observaciones + media / mediana
+
+```{r, eval=F}
+p1 <- p0 + 
+  geom_point(shape = 1, alpha=0.2)+
+  stat_summary(fun= mean,  #median
+               geom = "point", 
+               size = 2)+
+  labs(title="Observaciones (points) & media")
+p1
+```
+
+```{r, eval=F}
+p2 <- p0 + 
+  geom_jitter(width = 0.2, alpha=0.2)+
+  stat_summary(fun = mean,  #median
+               geom = "crossbar", 
+               size = 0.5)+
+  labs(title="Observaciones (jitter) & media")
+p2
+```
+
+### Barplot + SE
+
+```{r, eval=F}
+p3 <-p0 + 
+  stat_summary(fun=mean, position=position_dodge(width=0.95),geom="bar",
+               colour="black",fill="grey90")+
+  stat_summary(fun.data=mean_cl_normal, geom="errorbar", width=0.2) + 
+  labs(title="Barplot & SEM")
+p3
+```
+
+### Box-plot
+
+```{r, eval=F}
+p4 <-p0 + 
+  geom_boxplot(fill = "grey90") +
+  labs(title="Boxplot & mean") 
+p4
+```
+
+### Violin plot
+
+```{r, eval=F}
+p5 <-p0 + 
+  geom_violin(trim=FALSE,fill = "grey90")+
+  labs(title="Violin plot")
+p5 
+```
+
+### Media & dispersión
+
+```{r, eval=F}
+p6 <- p0 + 
+  stat_summary(fun="mean", geom="point", size=2)+
+  stat_summary(fun.data = mean_se, geom = "errorbar", width=0.2)+
+  stat_summary(fun.data= mean_sdl, geom = "errorbar", color="red", width=0.2)+
+  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", color="blue", width=0.2)+
+  labs(title="Media + SE (negro) / SD (rojo) / 95% CI (negro)")
+p6
+```
+
+Ahora ensamblemos todos los gráficos creados con ayuda de [{patchwork}](https://patchwork.data-imaginist.com/index.html)
+
+```{r, eval=F, fig.width = 9, fig.height = 6}
+library(patchwork)
+multiplot <- (p1 + p2 + p3) / (p4 + p5 + p6)
+```
+
+::: callout-note
+## Challenge
+
+Guarden el gráfico ensamblado en la carpeta plots, llamado "multiplot.jpg", de manera tal que sea legible (para eso usen el atributo `scale=` dentro de la función ggsave , y el `base_size =` indicado en el grafico base "p0"
+
+```{r}
+ggsave(plot= , 
+       file= , 
+       w= , 
+       h= , 
+       units="mm",
+       scale= , 
+       dpi=300, 
+       )
+```
+:::
+
+::: callout-note
+
+# Xtras
+
+La gran comunidad de usuarios de R disponibiliza sus creaciones e incluso trabaja en extensiones que amplían la potencialidad de sus paquetes.
+
+Se podría afirmar que no hay límites para la creación. Digamos, que no importa el "**¿cómo?**" si no el "**¿qué?**"
+
+Algunas pruebas de ello son los siguientes links:
+
+-   [The R Graph Gallery](https://www.r-graph-gallery.com/)
+-   [Top 50 plots](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
+-   [Extensiones de ggplot](http://www.ggplot2-exts.org/gallery/)
+-   [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+:::

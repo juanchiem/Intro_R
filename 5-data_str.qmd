@@ -1,0 +1,246 @@
+```{r, include = F}
+knitr::opts_chunk$set(echo = T, eval = F)
+```
+
+# Estructura de datos
+
+Asi como lo vimos para la **naturaleza** de los datos, comprender la **estructura** de los datos en R es de vital importancia.
+
+Un vector es la estructura de datos más básica en R.
+
+Vimos los vectores atómicos (un mismo tipo de datos: numericos, caracter...). Las listas son formas especiales de vectores (admiten todo tipo y estructra de datos).
+
+![](fig_2/data_str2.png){width="600px"}
+
+## Data frames {.unnumbered}
+
+Un dataframe es completo con **2 dimensiones**: n_fila x n_columna, donde:
+
+1- Cada columna representa una variable y estas pueden variar en el tipo de dato que contienen.
+
+2- Cada fila debe contener toda la info de la unidad experimental que se está evaluando
+
+3- Cada celda debe tener su observación (en caso de faltar el dato será un NA)
+
+![](fig_2/tibbles.png)
+
+Como hemos visto, hay dataframes contenidos en paquetes de inico automático. Un ejemplo muy usado, que está en el paquete `base` es el dataset "iris".
+
+```{r}
+iris # ya activo desde inicio de sesión por default
+?iris # F1
+View(iris) # F2 
+str(iris)
+```
+
+![](fig_2/iris.png){width="400px"} Exploración de estructura
+
+```{r}
+str(iris)
+```
+
+Exploración numérica de las variables
+
+```{r}
+summary(iris)
+```
+
+::: callout-note
+## Challenge
+
+-   Explore el dataset iris con las siguientes funciones y hagan sus anotaciones segun lo que obtienen sus resultados:
+
+```{r}
+dim(); head(); tail(); names() 
+```
+:::
+
+## Exportar / importar
+
+Imaginen que necesito a iris como archivo excel o csv
+
+{rio}
+
+```{r}
+library(rio)
+export(iris, file="data/iris.xlsx")
+iris_from_pc <- import(file="data/iris.xlsx")
+```
+
+## Creación de dataframes a partir de vectores
+
+Muy útil cuando quieren consultar sus dudas y necesitan un dataset de prueba para los foros
+
+```{r}
+x <- c("A", "B", "C")
+y <- c(1, 3, NA)
+
+dat <- data.frame(x = factor(x), y = y)
+dat
+str(dat)
+```
+
+```{r}
+# tibble::
+dat1 <- tribble(
+      ~X, ~Y,
+     "A",  1,
+     "B",  3,
+     "C",  NA
+     )
+dat1
+```
+
+Comparemos dat vs dat1 con
+
+```{r}
+pacman::p_load(janitor)
+compare_df_cols(dat, dat1)
+```
+
+Oops.. no se llamaban iguales??? R es case sensitive!
+
+```{r}
+dat2 <- clean_names(dat1)  
+compare_df_cols(dat, dat2)
+```
+
+### Importación desde paquetes específicos de datos
+
+{[agridat](https://kwstat.github.io/agridat/)}
+
+```{r}
+pacman::p_load(agridat)
+# ?agridat
+oats <- agridat::yates.oats
+# ?yates.oats
+```
+
+## Exploración de datasets
+
+### Estructura
+
+Es una de las primeras cosas que hacemos post-importación. Esto nos amplia el panorama de los datos.
+
+```{r}
+str(oats)
+```
+
+Cuantas celdas hay en cada combinación "nitro + gen"
+
+```{r}
+oats %>% 
+  xtabs(~ nitro + gen, data=.)
+```
+
+Cuantas celdas hay en cada combinación "nitro + gen + block"
+
+```{r}
+oats %>% 
+  xtabs(~ nitro + gen + block, data=.)
+```
+
+Mas amigable a la vista:
+
+```{r}
+oats %>% 
+  xtabs(~ nitro + gen + block, data=.) %>% 
+  ftable()
+```
+
+::: callout-note
+1 - Lo común es tener datos faltantes en las planillas de datos... En este [gist](https://gist.github.com/juanchiem/e2acc96c92825ff26ea2a12b7648b847) simulo un ejemplo para ver el desbalance del dataset. Pueden copiarlo y ejecturalo en sus propias PC´s
+
+2 - Una exploración similar al hecho con `xtabs` puede lograrse con e paquete [janitor](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#:~:text=%23%3E%20%5B1%5D%20FALSE-,Exploring,-tabyl()%20%2D%20a)
+:::
+
+### Exploración numérica
+
+Con valores absolutos de una variable respuesta `yield`
+
+```{r}
+summary(oats$yield)
+```
+
+```{r}
+oats %>% 
+  xtabs(yield ~ nitro + gen + block, data=.) %>% 
+  ftable()
+```
+
+::: callout-note
+## Xtras
+
+```{r}
+oats %>% 
+  xtabs(yield ~ nitro + gen + block, data=.) %>% 
+  prop.table()
+```
+
+```{r}
+# sumas de valores de yield
+oats %>% 
+  xtabs(yield ~ nitro + gen, data=.) %>% 
+  addmargins() 
+```
+:::
+
+{skimr}
+
+```{r}
+library(skimr)
+
+oats %>% 
+  skim(yield)
+```
+
+Un poco más en detalle:
+
+```{r}
+oats %>% 
+  group_by(nitro, gen) %>% 
+  skim(yield)
+```
+
+```{r}
+oats %>% 
+  group_by(nitro, gen) %>% 
+  skim(yield, grain, straw)
+```
+
+## Listas
+
+Una lista es un tipo especial de vector en el que cada elemento puede ser de un tipo diferente
+
+```{r}
+x <- list(a = 1:5, b = c("a", "b"), c = TRUE, d=dat)
+x
+```
+
+::: callout-note
+# Acceder a elementos de una lista:
+
+```{r}
+x$a       # 
+x[1]       # 
+#sum(x[1])
+x[[1]]     # 
+sum(x[[1]])
+x["c"]     # 
+```
+
+Más info [aquí](https://bookdown.org/rdpeng/rprogdatascience/subsetting-r-objects.html#subsetting-lists)
+:::
+
+## Matrices
+
+Admiten un único tipo de dato y carecen de nombre de columna. Al igual que los dataframes tienen 2 dimensiones: `nrow` x `ncol`
+
+-   Construyamos `my_matrix`
+
+```{r}
+my_matrix <- matrix(data = c(1,2,3,4,5,6,7,8,9), 
+                    nrow=3, ncol=3, 
+                    byrow=TRUE)
+my_matrix
+```

@@ -1,0 +1,14 @@
+{
+  "hash": "192ef487017179b08d5031daa6d1691a",
+  "result": {
+    "markdown": "# Tidyverse  {.unnumbered}\n\n\n![](fig_2/tidy.png){width=\"600px\"}\n\nRecordemos la sintaxis R base:\n\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-1_e5fc8304e6f2431f19ef5513e54409d8'}\n\n```{.r .cell-code}\nx <- c(1, 2, 3, 4)\nsd <- sqrt(var(x))\nsd\n```\n:::\n\n\n![](fig_2/onion.jpeg){width=\"200px\"}\n\nComo sería su equivalente bajo la sintaxis de tidyverse?\n\n![](fig_2/pasta_frola.jpeg){width=\"600px\"}\n\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-2_52c8a3b68bcce994ebfd2d893dd001b0'}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-3_e83b7e82075ea4676da6cd961b200a7a'}\n\n```{.r .cell-code}\nx %>% var() %>% sqrt()\n```\n:::\n\n\nEn realidad lo común es esta forma de escribir el código con pipes (`Ctrl + Alt + i)`:\n\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-4_8ce42a42141a839ffaf0a344639226fb'}\n\n```{.r .cell-code}\nx %>% \n  var() %>% \n  sqrt()\n```\n:::\n\n\nEn caso de querer alinear jerárquicamente un código, pueden hacerlo fácilmente seleccionando el bloque de código y cliquear `Ctrl + i`\n\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-5_ae14b869598949a9219e1fc6f5526d57'}\n\n```{.r .cell-code}\nx %>% \nvar() %>% \nsqrt()\n```\n:::\n\n\nMas detalles en [estilo tidyverse](https://style.tidyverse.org/index.html)\n\n::: callout-note\nNoten que debieron activar \"tidyverse\" para empezar a hacer uso de los pipes `%>%`. Ahora en las recientes versiones de R Studio el pipe es nativo y se ve asi `|>`\n\n\n::: {.cell hash='4-tidyverse_cache/html/unnamed-chunk-6_af4965e44291979a02ed9079a7826cea'}\n\n```{.r .cell-code}\nx |> var() |> sqrt()\n```\n:::\n\n\nPara ello deben activarlo en la sección \"Tools/Global Options/Code\"\n\n![](/fig_2/new_pipe.png)\n:::\n\nCon el avance de nuestro trabajo con R iremos entendiendo el gran maridaje que tienen los paquetes entre si.\n\n![](fig_2/taza.jpeg){width=\"200px\"}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

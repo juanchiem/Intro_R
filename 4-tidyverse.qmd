@@ -1,0 +1,60 @@
+# Tidyverse  {.unnumbered}
+
+
+![](fig_2/tidy.png){width="600px"}
+
+Recordemos la sintaxis R base:
+
+```{r}
+x <- c(1, 2, 3, 4)
+sd <- sqrt(var(x))
+sd
+```
+
+![](fig_2/onion.jpeg){width="200px"}
+
+Como sería su equivalente bajo la sintaxis de tidyverse?
+
+![](fig_2/pasta_frola.jpeg){width="600px"}
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+x %>% var() %>% sqrt()
+```
+
+En realidad lo común es esta forma de escribir el código con pipes (`Ctrl + Alt + i)`:
+
+```{r}
+x %>% 
+  var() %>% 
+  sqrt()
+```
+
+En caso de querer alinear jerárquicamente un código, pueden hacerlo fácilmente seleccionando el bloque de código y cliquear `Ctrl + i`
+
+```{r}
+x %>% 
+var() %>% 
+sqrt()
+```
+
+Mas detalles en [estilo tidyverse](https://style.tidyverse.org/index.html)
+
+::: callout-note
+Noten que debieron activar "tidyverse" para empezar a hacer uso de los pipes `%>%`. Ahora en las recientes versiones de R Studio el pipe es nativo y se ve asi `|>`
+
+```{r}
+x |> var() |> sqrt()
+```
+
+Para ello deben activarlo en la sección "Tools/Global Options/Code"
+
+![](/fig_2/new_pipe.png)
+:::
+
+Con el avance de nuestro trabajo con R iremos entendiendo el gran maridaje que tienen los paquetes entre si.
+
+![](fig_2/taza.jpeg){width="200px"}
