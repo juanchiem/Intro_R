@@ -18,11 +18,11 @@ book:
         - 1-intro.qmd
         - 2-sintaxis.qmd
         - 3-data_type.qmd
-    # - part: "Semana 2"
-    #   chapters: 
-    #     - 4-tidyverse.qmd
-    #     - 5-data_str.qmd
-    #     - 6-visualizar.qmd
+    - part: "Semana 2"
+      chapters:
+        - 4-tidyverse.qmd
+        - 5-data_str.qmd
+        - 6-visualizar.qmd
     # - part: "Bases del modelado"
     #   chapters:
         # - 7-manipular.qmd

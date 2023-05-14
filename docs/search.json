@@ -168,10 +168,80 @@
     "text": "3.5 Valores especiales\nExisten valores reservados para representar datos faltantes, infinitos, e indefiniciones matemáticas.\n\nNA (Not Available) significa dato faltante/indisponible. El NA tiene una clase, o sea, pueden ser NA numeric, NA character, etc.\n\n\ny &lt;- c(2, 4, NA, 6)\nis.na(y)\n\n[1] FALSE FALSE  TRUE FALSE\n\nlength(y)\n\n[1] 4\n\n\n\nCalcule el promedio de y (use la ayuda de R en caso necesario)mean(y)\n\n\nNaN (Not a Number) es el resultado de una operación matemática inválida, ej: 0/0 y log(-1). Un NaN es un NA, pero no recíprocamente.\n\n\n0/0\n\n[1] NaN\n\nis.nan(0/0)\n\n[1] TRUE\n\nis.na(0/0)\n\n[1] TRUE\n\n\n\nNULL es el vacío de R. Es como si el objeto no existiese\n\n\na = NULL\na\n\nNULL\n\n\n\nInf (infinito). Es el resultado de operaciones matemáticas cuyo límite es infinito, es decir, es un número muy grande, por ejemplo, 1/0 o 10^310. Acepta signo negativo -Inf.\n\n\n1/0\n\n[1] Inf\n\n1/Inf\n\n[1] 0"
   },
   {
+    "objectID": "4-tidyverse.html",
+    "href": "4-tidyverse.html",
+    "title": "Tidyverse",
+    "section": "",
+    "text": "Recordemos la sintaxis R base:\n\nx &lt;- c(1, 2, 3, 4)\nsd &lt;- sqrt(var(x))\nsd\n\n\nComo sería su equivalente bajo la sintaxis de tidyverse?\n\n\nlibrary(tidyverse)\n\n\nx %&gt;% var() %&gt;% sqrt()\n\nEn realidad lo común es esta forma de escribir el código con pipes (Ctrl + Alt + i):\n\nx %&gt;% \n  var() %&gt;% \n  sqrt()\n\nEn caso de querer alinear jerárquicamente un código, pueden hacerlo fácilmente seleccionando el bloque de código y cliquear Ctrl + i\n\nx %&gt;% \nvar() %&gt;% \nsqrt()\n\nMas detalles en estilo tidyverse\n\n\n\n\n\n\nNote\n\n\n\nNoten que debieron activar “tidyverse” para empezar a hacer uso de los pipes %&gt;%. Ahora en las recientes versiones de R Studio el pipe es nativo y se ve asi |&gt;\n\nx |&gt; var() |&gt; sqrt()\n\nPara ello deben activarlo en la sección “Tools/Global Options/Code”\n\n\n\nCon el avance de nuestro trabajo con R iremos entendiendo el gran maridaje que tienen los paquetes entre si."
+  },
+  {
+    "objectID": "5-data_str.html#data-frames",
+    "href": "5-data_str.html#data-frames",
+    "title": "4  Estructura de datos",
+    "section": "Data frames",
+    "text": "Data frames\nUn dataframe es completo con 2 dimensiones: n_fila x n_columna, donde:\n1- Cada columna representa una variable y estas pueden variar en el tipo de dato que contienen.\n2- Cada fila debe contener toda la info de la unidad experimental que se está evaluando\n3- Cada celda debe tener su observación (en caso de faltar el dato será un NA)\n\nComo hemos visto, hay dataframes contenidos en paquetes de inico automático. Un ejemplo muy usado, que está en el paquete base es el dataset “iris”.\n\niris # ya activo desde inicio de sesión por default\n?iris # F1\nView(iris) # F2 \nstr(iris)\n\n Exploración de estructura\n\nstr(iris)\n\nExploración numérica de las variables\n\nsummary(iris)\n\n\n\n\n\n\n\nChallenge\n\n\n\n\nExplore el dataset iris con las siguientes funciones y hagan sus anotaciones segun lo que obtienen sus resultados:\n\n\ndim(); head(); tail(); names()"
+  },
+  {
+    "objectID": "5-data_str.html#exportar-importar",
+    "href": "5-data_str.html#exportar-importar",
+    "title": "4  Estructura de datos",
+    "section": "4.1 Exportar / importar",
+    "text": "4.1 Exportar / importar\nImaginen que necesito a iris como archivo excel o csv\n{rio}\n\nlibrary(rio)\nexport(iris, file=\"data/iris.xlsx\")\niris_from_pc &lt;- import(file=\"data/iris.xlsx\")"
+  },
+  {
+    "objectID": "5-data_str.html#creación-de-dataframes-a-partir-de-vectores",
+    "href": "5-data_str.html#creación-de-dataframes-a-partir-de-vectores",
+    "title": "4  Estructura de datos",
+    "section": "4.2 Creación de dataframes a partir de vectores",
+    "text": "4.2 Creación de dataframes a partir de vectores\nMuy útil cuando quieren consultar sus dudas y necesitan un dataset de prueba para los foros\n\nx &lt;- c(\"A\", \"B\", \"C\")\ny &lt;- c(1, 3, NA)\n\ndat &lt;- data.frame(x = factor(x), y = y)\ndat\nstr(dat)\n\n\n# tibble::\ndat1 &lt;- tribble(\n      ~X, ~Y,\n     \"A\",  1,\n     \"B\",  3,\n     \"C\",  NA\n     )\ndat1\n\nComparemos dat vs dat1 con\n\npacman::p_load(janitor)\ncompare_df_cols(dat, dat1)\n\nOops.. no se llamaban iguales??? R es case sensitive!\n\ndat2 &lt;- clean_names(dat1)  \ncompare_df_cols(dat, dat2)\n\n\n4.2.1 Importación desde paquetes específicos de datos\n{agridat}\n\npacman::p_load(agridat)\n# ?agridat\noats &lt;- agridat::yates.oats\n# ?yates.oats"
+  },
+  {
+    "objectID": "5-data_str.html#exploración-de-datasets",
+    "href": "5-data_str.html#exploración-de-datasets",
+    "title": "4  Estructura de datos",
+    "section": "4.3 Exploración de datasets",
+    "text": "4.3 Exploración de datasets\n\n4.3.1 Estructura\nEs una de las primeras cosas que hacemos post-importación. Esto nos amplia el panorama de los datos.\n\nstr(oats)\n\nCuantas celdas hay en cada combinación “nitro + gen”\n\noats %&gt;% \n  xtabs(~ nitro + gen, data=.)\n\nCuantas celdas hay en cada combinación “nitro + gen + block”\n\noats %&gt;% \n  xtabs(~ nitro + gen + block, data=.)\n\nMas amigable a la vista:\n\noats %&gt;% \n  xtabs(~ nitro + gen + block, data=.) %&gt;% \n  ftable()\n\n\n\n\n\n\n\nNote\n\n\n\n1 - Lo común es tener datos faltantes en las planillas de datos… En este gist simulo un ejemplo para ver el desbalance del dataset. Pueden copiarlo y ejecturalo en sus propias PC´s\n2 - Una exploración similar al hecho con xtabs puede lograrse con e paquete janitor\n\n\n\n\n4.3.2 Exploración numérica\nCon valores absolutos de una variable respuesta yield\n\nsummary(oats$yield)\n\n\noats %&gt;% \n  xtabs(yield ~ nitro + gen + block, data=.) %&gt;% \n  ftable()\n\n\n\n\n\n\n\nXtras\n\n\n\n\noats %&gt;% \n  xtabs(yield ~ nitro + gen + block, data=.) %&gt;% \n  prop.table()\n\n\n# sumas de valores de yield\noats %&gt;% \n  xtabs(yield ~ nitro + gen, data=.) %&gt;% \n  addmargins() \n\n\n\n{skimr}\n\nlibrary(skimr)\n\noats %&gt;% \n  skim(yield)\n\nUn poco más en detalle:\n\noats %&gt;% \n  group_by(nitro, gen) %&gt;% \n  skim(yield)\n\n\noats %&gt;% \n  group_by(nitro, gen) %&gt;% \n  skim(yield, grain, straw)"
+  },
+  {
+    "objectID": "5-data_str.html#listas",
+    "href": "5-data_str.html#listas",
+    "title": "4  Estructura de datos",
+    "section": "4.4 Listas",
+    "text": "4.4 Listas\nUna lista es un tipo especial de vector en el que cada elemento puede ser de un tipo diferente\n\nx &lt;- list(a = 1:5, b = c(\"a\", \"b\"), c = TRUE, d=dat)\nx\n\n\n\n\n\n\n\nAcceder a elementos de una lista:\n\n\n\n\nx$a       # \nx[1]       # \n#sum(x[1])\nx[[1]]     # \nsum(x[[1]])\nx[\"c\"]     # \n\nMás info aquí"
+  },
+  {
+    "objectID": "5-data_str.html#matrices",
+    "href": "5-data_str.html#matrices",
+    "title": "4  Estructura de datos",
+    "section": "4.5 Matrices",
+    "text": "4.5 Matrices\nAdmiten un único tipo de dato y carecen de nombre de columna. Al igual que los dataframes tienen 2 dimensiones: nrow x ncol\n\nConstruyamos my_matrix\n\n\nmy_matrix &lt;- matrix(data = c(1,2,3,4,5,6,7,8,9), \n                    nrow=3, ncol=3, \n                    byrow=TRUE)\nmy_matrix"
+  },
+  {
+    "objectID": "6-visualizar.html#ggplot",
+    "href": "6-visualizar.html#ggplot",
+    "title": "5  Visualización",
+    "section": "ggplot",
+    "text": "ggplot\nGra\nEl paquete ggplot2 tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios así como crear figuras complejas, de alta calidad (con fines de publicaciones científicas, por ej).\nTiene su propia gramática (“Grammar of Graphics”): “suma de capas”\n\n\nSalvo la primera (que debe ser ggplot()), las capas no tienen un orden estricto\nLas capas se van agregando con un símbolo +\nUn mismo gráfico acepta tomar información de distintos datasets\n\nLas capas básicas son:\n\ndata (ggplot()): inicializa un objeto gráfico de ggplot\naesthetics (aes()): “Algo que se puede ver” Dentro de la capa aes debemos indicar que a que variable se atribuyen los diferentes atributos:\n\nmapeo de variables (ejes x e y)\ncolor exterior de los objetos o de las líneas (col)\ncolor de relleno (fill)\nforma de los puntos (shape)\ntipo de línea (linetype)\ntamaño de los puntos (size)\n\ngeometrías (geom_): formas geométricas para representar las observaciones (dan el nombre al tipo de gráfico: gráfico de dispersión, boxplot, histograma, etc…)\n\ngeom_point()\ngeom_smooth()\ngeom_boxplot()\nlista de “geoms”\n\n\n\nOtras capas importantes:\n\nfacetas (facet_x()): “paneles de compartimentalización” de un mismo gráfico\n\nfacet_wrap(): paneles contiguos\nfacets_grid(): paneles tipo grilla\n\nthemes combinación de colores\nlabs nombres detallados de ejes, leyendas, titulos, etc..\n\nEjemplo de visualización con iris\n\nlibrary(tidyverse)\n\nTambién necesitaremos:\n\npacman::p_load(Hmisc,     # para cálculos dentro de los mismas capas \n               patchwork  # ensamblar multiples graficos\n               )"
+  },
+  {
+    "objectID": "6-visualizar.html#ambas-variables-contínuas",
+    "href": "6-visualizar.html#ambas-variables-contínuas",
+    "title": "5  Visualización",
+    "section": "5.1 Ambas variables contínuas",
+    "text": "5.1 Ambas variables contínuas\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)\n\n# también podán encontrar\n# ggplot(iris, aes(x = Sepal.Length, y = Petal.Length))\n\n\n5.1.1 geoms\nObjetos geométricos. Son la representación visual de las observaciones. En general los que le dan el nombre al tipo de gráfico. La lista de “geoms” aumenta día a día.\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point()\n\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point(aes(color = Species))\n\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point(aes(color = Species))+ \n  geom_smooth()\n\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point()+\n  geom_smooth()\n\n\n\n5.1.2 facets\nLas facetas o “facets” permiten dividir el mismo gráfico en múltiples paneles asociados a los niveles de un factor.\n\niris %&gt;% \n  ggplot() +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point()+\n  geom_smooth(method = \"lm\")+\n  facet_wrap(~Species)\n\n\n\n5.1.3 theme\nLos temas (theme) son un conjunto de opciones predefinidas sobre la apariencia de los objetos en ggplot. El tema por defecto del ggplot dibuja el gráfico sobre un fondo gris. Podemos cambiarlo a blanco y negro añadiendo el comando theme_bw().\n\nggplot(iris) +\n  aes(x = Sepal.Length, y = Petal.Length)+\n  geom_point()+\n  geom_smooth(method = \"lm\")+\n  facet_wrap(~Species) + \n  theme_bw()\n\n\n\n5.1.4 ggsave\n\nggsave(last_plot(), file=\"plots/iris_smooth.tiff\", \n       w=80, h=60, units=\"mm\", dpi=300)"
+  },
+  {
+    "objectID": "6-visualizar.html#variable-continua-vs-factor",
+    "href": "6-visualizar.html#variable-continua-vs-factor",
+    "title": "5  Visualización",
+    "section": "5.2 Variable continua vs factor",
+    "text": "5.2 Variable continua vs factor\nLos gráficos de barra, ampliamente usados en publicaciones científicas, son cada vez más criticados por “ocultar” la naturaleza de las observaciones Drummond and Vowler (2011); Weissgerber (2015)\n\n\n\nMany different datasets can lead to the same bar graph\n\n\nA continuación presentamos algunas opciones gráficas que surgen de la combinación de medidas de posición y de dispersión.\n\n# Aprovechamos para customizar el `theme` a nuestro gusto y agregar algunos detalles:\np0 &lt;- iris %&gt;% \n  ggplot() +\n  aes(x = Species, y = Petal.Length)+\n  labs(x = \"Iris species\", y =\"Sepal length (cm)\") + \n  theme_light(base_size = 10)\np0\n\n\n5.2.1 Observaciones + media / mediana\n\np1 &lt;- p0 + \n  geom_point(shape = 1, alpha=0.2)+\n  stat_summary(fun= mean,  #median\n               geom = \"point\", \n               size = 2)+\n  labs(title=\"Observaciones (points) & media\")\np1\n\n\np2 &lt;- p0 + \n  geom_jitter(width = 0.2, alpha=0.2)+\n  stat_summary(fun = mean,  #median\n               geom = \"crossbar\", \n               size = 0.5)+\n  labs(title=\"Observaciones (jitter) & media\")\np2\n\n\n\n5.2.2 Barplot + SE\n\np3 &lt;-p0 + \n  stat_summary(fun=mean, position=position_dodge(width=0.95),geom=\"bar\",\n               colour=\"black\",fill=\"grey90\")+\n  stat_summary(fun.data=mean_cl_normal, geom=\"errorbar\", width=0.2) + \n  labs(title=\"Barplot & SEM\")\np3\n\n\n\n5.2.3 Box-plot\n\np4 &lt;-p0 + \n  geom_boxplot(fill = \"grey90\") +\n  labs(title=\"Boxplot & mean\") \np4\n\n\n\n5.2.4 Violin plot\n\np5 &lt;-p0 + \n  geom_violin(trim=FALSE,fill = \"grey90\")+\n  labs(title=\"Violin plot\")\np5 \n\n\n\n5.2.5 Media & dispersión\n\np6 &lt;- p0 + \n  stat_summary(fun=\"mean\", geom=\"point\", size=2)+\n  stat_summary(fun.data = mean_se, geom = \"errorbar\", width=0.2)+\n  stat_summary(fun.data= mean_sdl, geom = \"errorbar\", color=\"red\", width=0.2)+\n  stat_summary(fun.data = mean_cl_boot, geom = \"errorbar\", color=\"blue\", width=0.2)+\n  labs(title=\"Media + SE (negro) / SD (rojo) / 95% CI (negro)\")\np6\n\nAhora ensamblemos todos los gráficos creados con ayuda de {patchwork}\n\nlibrary(patchwork)\nmultiplot &lt;- (p1 + p2 + p3) / (p4 + p5 + p6)\n\n\n\n\n\n\n\nChallenge\n\n\n\nGuarden el gráfico ensamblado en la carpeta plots, llamado “multiplot.jpg”, de manera tal que sea legible (para eso usen el atributo scale= dentro de la función ggsave , y el base_size = indicado en el grafico base “p0”\n\nggsave(plot= , \n       file= , \n       w= , \n       h= , \n       units=\"mm\",\n       scale= , \n       dpi=300, \n       )\n\n\n\n\n\n\n\n\n\nXtras\n\n\n\nLa gran comunidad de usuarios de R disponibiliza sus creaciones e incluso trabaja en extensiones que amplían la potencialidad de sus paquetes.\nSe podría afirmar que no hay límites para la creación. Digamos, que no importa el “¿cómo?” si no el “¿qué?”\nAlgunas pruebas de ello son los siguientes links:\n\nThe R Graph Gallery\nTop 50 plots\nExtensiones de ggplot\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nDrummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal Them.” British Journal of Pharmacology 163 (2): 208–10. https://doi.org/10.1111/j.1476-5381.2011.01251.x.\n\n\nWeissgerber, Natasa M. AND Winham, Tracey L. AND Milic. 2015. “Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm.” PLOS Biology 13 (4): 1–10. https://doi.org/10.1371/journal.pbio.1002128."
+  },
+  {
     "objectID": "referencias.html",
     "href": "referencias.html",
     "title": "Referencias",
     "section": "",
-    "text": "Ellison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
+    "text": "Drummond, GB, and SL Vowler. 2011. “Show the Data, Don’t Conceal\nThem.” British Journal of Pharmacology 163 (2): 208–10.\nhttps://doi.org/10.1111/j.1476-5381.2011.01251.x.\n\n\nEllison, GN, and NJ Gotelli. 2004. “A Primer of Ecological\nStatistics.” Sinauer, Sunderland, Massachusetts, USA.\n\n\nWeissgerber, Natasa M. AND Winham, Tracey L. AND Milic. 2015.\n“Beyond Bar and Line Graphs: Time for a New Data Presentation\nParadigm.” PLOS Biology 13 (4): 1–10. https://doi.org/10.1371/journal.pbio.1002128.\n\n\nWickham, Hadley, and Garrett Grolemund. 2016. R for Data Science:\nImport, Tidy, Transform, Visualize, and Model Data. \" O’Reilly\nMedia, Inc.\". http://r4ds.had.co.nz/."
   }
 ]
