@@ -1,13 +1,10 @@
+```{r, include = F}
+knitr::opts_chunk$set(echo = T, eval = F)
+```
+
 # Manipulación
 
-Recursos:
-
 Cheatsheets https://github.com/rstudio/cheatsheets
-
--   dplyr https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf
--   tidyr https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf\
--   lubridate https://github.com/rstudio/cheatsheets/blob/main/lubridate.pdf
--   forcats https://github.com/rstudio/cheatsheets/blob/main/factors.pdf
 
 ```{r}
 library(tidyverse)
@@ -17,18 +14,26 @@ library(tidyverse)
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
 ```
+Importemos **bce_met**
 
 ```{r}
-# bce_met_raw <- rio::import("data/datos_curso.xls", sheet ="bce_met")
+bce_met_raw <- rio::import("data/datos_curso.xls", sheet ="bce_met")
 # bce_met_raw
-# bce_met_raw %>% rio::export("data/bce_met_raw.csv")
-bce_met_raw <- rio::import("data/bce_met_raw.csv")
 bce_met_raw
 ```
 
-# dplyr
+```{r}
+glimpse(bce_met_raw)
+```
 
-## mutate()
+```{r}
+library(skimr)
+skim(bce_met_raw)
+```
+
+## [{dplyr}](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf)
+
+### mutate()
 
 -   Crear nueva columna en base a otras pre-existentes
 
@@ -38,11 +43,11 @@ bce_met <- bce_met_raw %>%
 bce_met
 ```
 
-Fecha como caracter no nos permitira usarla como una variable temporal aun...
+Fecha esta como tipo caracter: no nos permitirá usarla como una variable temporal aun...
 
 Modificar variables (en este caso el tipo de dato)
 
-### lubridate
+[{lubridate}](https://github.com/rstudio/cheatsheets/blob/main/lubridate.pdf) 
 
 ```{r}
 # library(lubridate)
@@ -60,7 +65,7 @@ bce_met <- bce_met %>%
 bce_met
 ```
 
-Crear columna en base a condiciones simples
+Crear una columna en base a condiciones simples
 
 ```{r}
 bce_met <- bce_met %>% 
@@ -69,41 +74,54 @@ bce_met
 #16
 ```
 
-Crear columna en base a una condiciones múltiple
-
-### ifelse
+Crear varias columnas en base a condiciones
 
 ```{r}
 bce_met <- bce_met %>% 
   mutate(
     helada_meteo = tmin<=0,
-    helada_agro = ifelse(tmin>0 & tmin<3, T, F)
-    # helada_agro2 = between(tmin, 0,3)
+    helada_agro = between(tmin, 0,3),
     )
 bce_met
 ```
 
-### case_when
+#### case_when
 
 ```{r}
 bce_met <- bce_met %>% 
   mutate(
     ambiente = case_when(
       tmean < 10  ~ "fresco", 
-      tmean > 10 & tmean < 20  ~ "templado",
+      tmean >= 10 & tmean <= 20  ~ "templado",
       tmean > 20  ~ "calido")
   )
 bce_met
+
 ```
-
-### cumsum
-
-muy útil para cálculos como el de suma térmica
 
 ```{r}
 bce_met <- bce_met %>% 
   mutate(
-    grados_efectivos = ifelse(tmean>10, tmean-10, 0),
+    ambiente = case_when(
+      tmean < 10  ~ "fresco", 
+      tmean > 20  ~ "calido", 
+      TRUE ~ "templado")
+  )
+bce_met
+
+```
+
+#### group_by()
+
+Operaciones por sub-grupos
+
+- if_else
+- cumsum
+
+```{r}
+bce_met <- bce_met %>% 
+  mutate(
+    grados_efectivos = if_else(tmean>10, tmean-10, 0),
     suma_termica = cumsum(grados_efectivos)
   )
 # suma_termica = cumsum(ifelse(date>="2018-10-01", grados_efectivos, 0)))
@@ -120,10 +138,10 @@ bce_met <- bce_met %>%
   ungroup()
 # suma_termica = cumsum(ifelse(date>="2018-10-01", grados_efectivos, 0)))
 bce_met
-#4
+#hoja4
 ```
 
-## select()
+### select()
 
 Selecciona columnas basadas en sus nombres
 
@@ -136,25 +154,25 @@ bce_met1 <- bce_met %>%
 bce_met1
 ```
 
-::: callout-note
-Opción 2
+Opción 2: descartar variables
 
 ```{r}
 bce_met1 <- bce_met %>% 
-  select(-c(tmin, tmax, grados_efectivos, suma_termica, suma_termica_mes))
+  select(-tmin, -tmax, -grados_efectivos, -suma_termica, -suma_termica_mes)
 bce_met1
 ```
 
-Opción 3
+Opción 3: seleccionar, renombrar y acomodar
 
 ```{r}
 bce_met1 <- bce_met %>% 
   select(fecha, mes, juliano, tmedia=tmean, rad, contains("helada"), ambiente) # cuanto mas eficiente estamos siendo
 bce_met1
 ```
+
 :::
 
-## filter()
+### filter()
 
 Filtra filas en base a condiciones
 
@@ -169,6 +187,9 @@ bce_met1 %>%
 bce_met1 %>% 
   filter(tmedia<10)
 ```
+
+::: callout-note
+### Otras condiciones
 
 Filtrar por: condicion multiplicativa
 
@@ -198,8 +219,9 @@ filtrar por rango
 bce_met1 %>% 
   filter(between(tmedia,3,6))
 ```
+:::
 
-## count()
+### count()
 
 Cuenta el numero de observaciones por grupo
 
@@ -215,7 +237,7 @@ bce_met1 %>%
   count(mes, helada_meteo)
 ```
 
-## summarise()
+### summarise()
 
 Reduce múltiples valores a valores resúmenes. Generalmente combinado con `group_by()`
 
@@ -232,7 +254,7 @@ bce_met1 %>%
 bce_sum
 ```
 
-## arrange()
+### arrange()
 
 Cambia el orden de las filas
 
@@ -249,12 +271,13 @@ bce_sum %>%
 Ya que hicimos tantas modificaciones a los datos es un buen momento para guardar en formato `.Rdata` o `.rda`
 
 ```{r}
-save(bce_met_raw, bce_met1, bce_sum, file="data/meteo_bce.Rdata")
+# save(bce_met_raw, bce_met1, bce_sum, file="data/meteo_bce.Rdata")
 load("data/meteo_bce.Rdata")
-# save(bce_met_raw, bce_met1, bce_sum, file="data/meteo_bce.rda")
+ls()
 ```
 
-Gráfico de Temperaturas media
+::: callout-note
+### Gráfico de Temperaturas media
 
 ```{r}
 bce_met1 %>% 
@@ -266,34 +289,39 @@ bce_met1 %>%
   theme(axis.text.x = element_text(angle=45, hjust = 1)) 
 ```
 
-> nos interesa visualizar los meses en que se desarrolla el trigo (de junio a diciembre)
+### Gráfico de tmax, tmin, y tmean
 
 ```{r}
 bce_met %>% 
   ggplot() + 
   aes(x=fecha)+
-  
+  # Agrego una variable por capa
   geom_line(aes(y = tmean, col = "Media"), alpha=.5) +
   geom_line(aes(y = tmax, col = "Máxima"), alpha=.5) +
   geom_line(aes(y = tmin, col = "Mínima"), alpha=.5) +
-  
+  # con ajuste manual de los colores
   scale_colour_manual("Temperatura",
                       values = c("Media" = "black", 
                                  "Máxima" = "red", 
                                  "Mínima" = "blue"))+ 
   theme_bw() + 
+  
+  # nos interesa visualizar de junio a diciembre
   scale_x_date(date_breaks = "1 month", date_labels = "%b",
                limits = as.Date(c("2018-06-01", "2018-31-12")))+
+  
+  # algunos ajustes finos
   theme(axis.text.x = element_text(angle=45, hjust = 1))+
   labs(y="°C")
 ```
+:::
 
-## join()
+### join()
 
 Nos acaban de pasar los datos de lluvias de Balcarce en 2018
 
 ```{r}
-bce_lluvias_raw  <- rio::import("data/datos_curso.xls", sheet ="bce_lluvias")
+bce_lluvias_raw <- rio::import("data/datos_curso.xls", sheet ="bce_lluvias")
 bce_lluvias_raw
 ```
 
@@ -327,20 +355,19 @@ bce_full <- bce_met1 %>% left_join(bce_lluvias, by="fecha")
 bce_full
 ```
 
-
 ```{r}
 bce_full %>% 
   ggplot() + 
   aes(x=fecha)+
   geom_col(aes(y = pp), col="blue") + 
+  geom_line(aes(y=tmedia), col="green") + 
   theme_bw() + 
   scale_x_date(date_breaks = "1 month", date_labels = "%b",
                limits = as.Date(c("2018-06-01", "2018-31-12")))+
-  theme(axis.text.x = element_text(angle=45, hjust = 1))+
-  geom_line(aes(y=tmedia), col="green")
+  theme(axis.text.x = element_text(angle=45, hjust = 1))
 ```
 
-## forcats
+## [{forcats}](https://github.com/rstudio/cheatsheets/blob/main/factors.pdf)
 
 El paquete `{forcats}` hace un aporte clave para la manipulación de los niveles de un factor. Retomemos un ejemplo de tipico de visualización con `iris`
 
@@ -387,13 +414,13 @@ iris %>%
   theme_bw()
 ```
 
-# tidyr
+## [{tidyr}](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf)
 
 Contiene funciones para re-estructurar dataframes. Similar al conocido "transponer" de excel.
 
 (fig/tidyr-pivot_wider_longer.gif)
 
-## pivot_longer()
+### pivot_longer()
 
 Por lo general en la etapa de toma de datos en el campo/lab (y su consiguiente pasaje a planilla electrónica, Excel) nos resulta más cómodo que las planillas de papel tengan un formato *wide*.
 
@@ -425,12 +452,16 @@ soja %>%
     cols=contains("_"),
     names_to = "bk", 
     values_to = "yield", 
-    names_prefix = "bk_") -> soja_long
+    names_prefix = "bk_") %>% 
+  mutate_if(is.character, as.factor)-> soja_long
 
 soja_long
 ```
 
-Tambien es comun para medidas repetidas en el tiempo
+::: callout-note
+### pivot_longer 2
+
+- Medidas repetidas en el tiempo
 
 ```{r}
 canola  <- rio::import("data/datos_curso.xls", sheet ="canola")
@@ -472,7 +503,12 @@ can_long2 %>%
   facet_wrap("par")
 ```
 
-Otra interesante utilidad de pivot_longer es cuando queremos graficar multiples variables en un mismo grafico pero en diferentes paneles ("facets")
+::: 
+
+::: callout-note
+### pivot_longer 3
+
+Supongamos que queremos graficar multiples variables en un mismo grafico pero en diferentes paneles ("facets")
 
 ```{r}
 bce_full %>% 
@@ -495,3 +531,4 @@ bce_full_long %>%
   labs(x="", y="") + 
   guides(col="none")
 ```
+:::

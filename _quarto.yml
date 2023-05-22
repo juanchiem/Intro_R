@@ -23,13 +23,12 @@ book:
         - 4-tidyverse.qmd
         - 5-data_str.qmd
         - 6-visualizar.qmd
-    # - part: "Bases del modelado"
-    #   chapters:
-        # - 7-manipular.qmd
+    - part: "Semana 3"
+      chapters:
+        - 7-manipular.qmd
         # - 8-regresion.qmd
         # - 9-anova.qmd
     - referencias.qmd
-
 
 bibliography: references.bib
 

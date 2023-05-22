@@ -6,8 +6,6 @@ knitr::opts_chunk$set(echo = T, eval = F)
 
 ## ggplot {.unnumbered}
 
-Gra
-
 El paquete ggplot2 tiene una flexibilidad tal que permite generar rápidamente gráficos exploratorios así como crear figuras complejas, de alta calidad (con fines de publicaciones científicas, por ej).
 
 Tiene su propia gramática (*"Grammar of Graphics"*): **"suma de capas"**

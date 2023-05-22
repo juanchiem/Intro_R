@@ -1,0 +1,305 @@
+---
+title: "Introduction to multiple regression and its applications in agriculture"
+author: "Dr. Alesso"
+format: 
+  revealjs:
+    theme: theme.scss
+    logo: logo-internal-collaboration-1024x423.png
+editor: visual
+---
+
+## Roadmap
+
+::: columns
+::: {.column width="50%"}
+
+-   Motivation: why multiple regression?
+
+-   Recap: from simple to multiple
+
+-   Case study: data exploration
+
+-   The General Linear Model
+
+-   Parameter estimation
+
+-   Model checking
+
+-   Inferences
+
+-   Predictions
+
+-   Model selection
+
+-   Summary
+:::
+
+::: {.column width="50%"}
+This presentation is reproducible.
+
+1.  Clone git repository
+
+2.  Install required packages
+
+    ```{r}
+    # install.packages("pacman")
+    pacman::p_load(tidyverse, car, rio, GGally, xfun)
+    ```
+
+3.  ackages
+
+4.  
+:::
+:::
+
+## Intro: why multiple linear regression?
+
+Biological problems are complex and we usually need more than one variate/factor to build more realistic models.
+
+Many applications that fall into two broad categories:
+
+-   Predict new outcomes
+
+-   Explain variability of processes
+
+-   Controlling variation
+
+-   Variable substitution, e.g. transfer functions
+
+## Recap: the lineal model
+
+::: columns
+::: {.column width="50%"}
+Simple linear regression model
+
+$$
+\underbrace{Y}_{\substack{\text{random} \\ \text{variable}}} = f(X)=\underbrace{\beta_0 + \beta_1 X}_{\text{systematic}} + \underbrace{\varepsilon}_{\text{random}}
+$$
+
+```{r, echo = F, out.width="80%"}
+dummy <- data.frame(X = 0:10, Y = 3:13)
+ggplot(dummy, aes(X, Y)) +
+  geom_line() +
+  labs(x = "X (explanatory)", y = "Y (response)") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15), breaks = NULL) +
+  scale_x_continuous(expand = c(0, 0.05), limits = c(0, 10), breaks = NULL) +
+  theme_bw(base_size = 12) +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  annotate("text", x = 1, y = 2, label = "paste(beta[0], ' (intercept)')", hjust = 0, parse = T, size = 8) +
+  annotate('segment', x = 0.1, xend = 0.8, y = 3, yend = 2) + 
+  annotate("text", x = 6.25, y = 8.25, label = "paste(beta[1], ' (slope)')", hjust = 0, parse = T, size = 8) +
+  annotate("text", x = 5.5, y = 7.5, label = "1", hjust = 0, parse = T, size = 8) +
+  annotate('segment', x = 5, xend = 6, y = 8, yend = 8) + 
+  annotate('segment', x = 6, xend = 6, y = 8, yend = 9) + 
+  annotate("point", x = 4, y = 10, colour = "red", size = 1.5) +
+  annotate('segment', x = 4, xend = 4, y = 7, yend = 10) + 
+  annotate("text", x = 3.5, y = 8.5, label = "paste(italic(e)[i])", hjust = 0, parse = T, size = 8) +
+  annotate("text", x = 4, y = 10.5, label = "paste(italic(X)[i]~italic(Y)[i])", hjust = 0, parse = T, size = 8)
+```
+:::
+
+::: {.column width="50%"}
+::: callout-note
+Assumptions
+
+-   $X$ is fixed and under researcher control (Model 1) or random (model 2).
+
+-   $Y$ is random and its conditional expectation is $E(Y|X)=\beta_0+\beta_1X$ , in other words, the expectation of errors is $E(e_i) = 0$
+
+-   Errors are independent random variables, $\text{Cov}(e_i, e_j) = 0$, normally distributed: $e_\text{iid} \sim N(0,\sigma^2_\varepsilon)$
+:::
+:::
+:::
+
+::: notes
+In the previous class we discussed the simplest type of regression model used to relate a response variable Y, also called dependent varaible, to a explanatory or independent variable X. Both variables were quantitative.
+
+Although very simple, the model is very restrictive and could have high bias.
+
+Let's see a case, suppose we have yields..
+:::
+
+## The case: diploid wheat
+
+::: columns
+::: {.column width="50%"}
+Several morphological traits were measured for 190 seeds selected at random from a line of diploid wheat (*Triticum monococcum*). The goal was to *identifying variables associated with differences in seed weight* (Jing et al., 2007)[^1]
+
+The variables measured were:
+
+-   weight (mg)
+
+-   diameter (mm)
+
+-   length (mm)
+
+-   moisture content (%)
+
+-   endosperm hardness (single-kernel characterization system index value)
+
+The data are in file `r xfun::embed_file("triticum.xlsx", text = "triticum.xlsx")`\` `r fontawesome::fa("download")`\`
+:::
+
+::: {.column width="50%"}
+```{r, message=FALSE}
+triticum <- import("triticum.xlsx")
+select(triticum, -ID) |> ggpairs() +theme_bw()
+```
+:::
+:::
+
+[^1]: Wheat Genetic Improvement Network (WGIN): www.wgin.org.uk)
+
+## The General Linear Model
+
+$$
+Y=\beta_0+\beta_1X_1+\beta_2X_2+\cdots+\beta_pX_p+\varepsilon
+$$
+
+the $X$'s can be:
+
+-   quantitative independent variables
+
+-   categorical variables represented as dummy 0/1 variables
+
+<!-- -->
+
+-   or cross-product terms involving the same variables (powers) o other independent or dummy variables
+
+> Ok, but why is called **linear**?
+>
+> Because $\beta$'s are entered linearly (not as powers or products). The GLM is linear in the $\beta$'s
+>
+> $Y=\beta_0+\beta_1X_1+\beta_2X_1^2+\varepsilon$ still linear in $\beta$ but not linear in $X$
+>
+> $Y=\beta_0 +\beta_1\log(X_1) + \beta_2X_2 +\varepsilon$ still linear in $\beta$ but not linear in $X$
+>
+> $Y=\beta_1\text{cosine}(\beta_2X_2)+\varepsilon$ not linear
+>
+> $Y=\beta_0 X_1^{\beta_1} X_2^{\beta_2}+\varepsilon$ not linear
+
+::: notes
+the simple linear regression model relating two quantitative variables, or those models relating quantitative response to qualitative variables (anova models) are special cases of a more general model: the GLM.
+
+where G does not mean Generalized
+
+It can accommodate both categorical and quantitative variables, some transformations and interactions (cross-products)
+
+Why linear if we can include powers, logs, etc. It is because of how the $\beta$' s are entered in the model rather the variables.
+:::
+
+## How the GLM works?
+
+Explain how slopes work, how holding the rest constant and dummy
+
+## How to estimate the model?
+
+In a random sample, the *i*-th observation is:
+
+$$
+y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \cdots + \beta_px_{ip} + \varepsilon_i
+$$
+
+and the *i*-th fitted value is:
+
+$$
+\hat{y}_i = \hat\beta_0 + \hat\beta_1x_{i1} + \hat\beta_2x_{i2} + \cdots + \hat\beta_px_{ip}
+$$
+
+The $\hat\beta$'s can be found by applying the **ordinary least-square** method which minimizes the **residual or error sum of squares** (SSE):
+
+$$
+\text{SSE} = \sum{e_i^2} = \sum{(y_i - \hat{y}_i)^2}=\sum{(y_i -  \hat\beta_0 + \hat\beta_1x_{i1} + \hat\beta_2x_{i2} + \cdots + \hat\beta_px_{ip})^2}
+$$
+
+Solving the **normal equations**
+
+$$
+\begin{cases}
+\begin{array}{}
+\sum y_i & = & n\hat\beta_0 &+& \sum x_{i1}\hat\beta_1 &+& \sum x_{i2}\hat\beta_2 &+& \cdots &+& \sum x_{ip}\hat\beta_p \\
+\sum x_{i1}y_i & = & \sum x_{i1}\hat\beta_0 &+& \sum x^2_{i1}\hat\beta_1 &+& \sum x_{i2}\hat\beta_2 &+& \cdots &+& \sum x_{i1}x_{ip}\hat\beta_p \\
+\sum x_{i2}y_i & = & \sum x_{i2}\hat\beta_0 &+& \sum x_{i2}x_{i1}\hat\beta_1 &+& \sum x^2_{i2}\hat\beta_2 &+& \cdots &+& \sum x_{i2}x_{ip}\hat\beta_p \\
+\vdots && &&&\vdots \\
+\sum x_{ip}y_i & = & \sum x_{ip}\hat\beta_0 &+& \sum x_{ip}x_{i1}\hat\beta_1 &+& \sum x_{ip}x_{i2}\hat\beta_2 &+& \cdots &+& \sum x^2_{ip}\hat\beta_p 
+\end{array}
+\end{cases}
+$$
+
+or using matrix notation...
+
+$$
+\mathbf{Y} = \mathbf{X}\beta\\
+(\mathbf{X'X})\hat\beta = \mathbf{X'Y} \\
+\hat\beta =(\mathbf{X'X})^{-1}\mathbf{X'Y}
+$$
+
+Normal equations
+
+::: notes
+the are several methods for estimating the $\beta$'s, in this lecture we are going to cover the Ordinary Least-Squares (OLS)
+
+using matrix notation... how actually statistical packages get the computations done.
+:::
+
+```{r}
+m <- lm(weight ~ length + diameter + hardness+ moisture, triticum)
+m
+```
+
+> What these coefficients mean?
+>
+> -   They are the **partial slopes**: the effect of changing a $X$ but keeping the rest constant.
+>
+>     Example: $X_\text{length} = -40.15$ means that for each unit increase in length and holding the remaining predictors constant, the wieght would decrease 40.15 units
+
+### What is the error of the model?
+
+We defined errors as the difference between observed $y_i$ and estimated or fitted values $\hat y_i$ :
+
+$$
+\begin{align}
+e_i &= y_i - \hat{y}_i \\
+&= y_i - (\hat\beta_0 + \hat\beta_1x_{i1} + \hat\beta_2x_{i2} + \cdots + \hat\beta_px_{ip})
+\end{align}
+$$
+
+Then the SSE is
+
+$$
+\text{SSE} = \sum{(y_i - \hat{y}_i)^2}
+$$
+
+as it has $n-p$ degrees of freedom, one for each parameter involved in $\hat y_i$, the **mean squared error** (MSE) is
+
+$$
+\text{MSE} = \dfrac{\text{SSE}}{n-p} = \dfrac{\sum{(y_i - \hat{y}_i)^2}}{n-p}
+$$
+
+which can be used as an estimate of the standard error of the model:
+
+$$
+\sigma_\varepsilon = \text{RMSE} = \sqrt{\dfrac{\text{SSE}}{n-p}} = \sqrt{\dfrac{\sum{(y_i - \hat{y}_i)^2}}{n-p}}
+$$
+
+> How to interpret this?
+>
+> -   It is the average deviation of a prediction from the observed values
+>
+> -   Empirical rule: 95% of the prediction errors fall $\pm$ 2 RMSE
+>
+> -   The lower, the better.
+
+We can get it form our model by using `sigma()` function
+
+```{r}
+sigma(m)
+```
+
+## Assessing the model
+
+## Testing parameters
+
+## Building the model
+
+### Variable selection
