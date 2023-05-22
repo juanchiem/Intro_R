@@ -1,0 +1,352 @@
+---
+title: "Modelos lineales"
+format: html
+---
+
+* Modelo Lineal General - bases
+* Ajuste de Modelo 
+* Verificación de supuestos
+* Performance del Modelo
+* Predicciones
+
+```{r, eval = T, message=FALSE, warning=FALSE}
+pacman::p_load(
+  # usos generales
+  tidyverse, 
+  printr,    
+  # exploracion
+  GGally, 
+  correlation, 
+  # modelado 
+  performance, 
+  relaimpo, 
+  see,
+  car,
+  sjPlot
+)
+
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("select", "dplyr")
+```
+
+## Modelos lineares - generalidades
+
+### ML simple y multiple
+
+We kown that biological processes are complex by nature. They involve many variables and complex interactions. Although SLR models are useful in some scenarios, oftenly they fail at modeling this situations.
+
+MLR allows us building **more realistic** and **interpretable** models. Although it has a number of applications, they fall into broad categories. For example, MLR is used as a tool for 
+
+- **Modeling** crop yield response to fertilizer rates
+
+- **Predicting** crop yields based on weather, soil, management variables
+
+- Identifying variables or factors that **explain** crop yields
+
+- **Controlling variation** in designed experiments using quantiative covariables (ANCOVA)
+
+- Estimating soil properties from easy to measure soil variables and pedotransfer functions (**variable substitution**)
+
+$$\underbrace{Y}_{\substack{\text{random} \\ \text{variable}}} = f(X)=\underbrace{\beta_0 + \beta_1 X}_{\text{systematic}} + \underbrace{\varepsilon}_{\text{random}}$$
+
+Simplest type of regression model used to relate a response variable Y, also called dependent variable, to a explanatory or independent variable X. Both variables were quantitative.
+
+Although very simple, the model is very restrictive and could have high bias.
+
+![](fig_3/slr.png){fig-align="center" width="400px"}
+
+This model has 2 parameters, the intercept and the slope, the first one represents the value of the response when the X is 0. The slope represents the change of Y for each unit change of X. If slope is 0, then there is no relation between X and Y.
+
+**supuestos**
+
+- $X$ is **fixed** (Model 1) or **random** (model 2).
+
+- $Y$ is **random** with $E(Y|X)=\beta_0+\beta_1X$
+
+- Errors are **independent** random variables with **normal distribution** 
+
+$$e_\text{iid} \sim N(0,\sigma^2_\varepsilon)$$ 
+$$\text{Cov}(e_i, e_j) = 0$$
+
+![](fig_3/slr_assump.png){fig-align="center" width="400px"}
+
+The straight line summarize the linear relationship between expectation of Y a each value of X. We also see that each observation is a realization from a random variable with normal distribution with expectation conditioned by X and constant variance
+
+Well see that these assumptions are still valid for MLR
+
+### Estudio de caso: trigo diploide
+
+![](fig_3/Triticum_monococcum0.jpg){fig-align="center" width="300px"}
+
+Several morphological traits were measured for 190 seeds selected at random from a line of diploid wheat (*Triticum monococcum*). [(Jing et al.,  2007)](http://www.wgin.org.uk/information/documents/WGIN%20publications%20pdfs/Jing%202007.pdf)
+
+The goal was to *identifying variables associated with differences in seed weight* 
+
+```{r, echo = F}
+triticum <- rio::import("data/triticum.xlsx")
+head(triticum)
+```
+
+The variables measured were: `weight` (mg), `diameter` (mm), `length` (mm), `moisture` content (%), and endosperm `hardness` (single-kernel characterization system index value)
+
+## Exploracion 
+
+¿Are there any correlations between variables?
+
+```{r splom, message=FALSE, out.width="80%"}
+triticum %>% 
+  select(-ID)  %>% 
+  ggpairs() +
+  theme_bw()
+```
+
+si lo prefieren en modo tabla:
+
+```{r}
+triticum %>%
+  select(length, diameter, moisture, hardness) %>% 
+  correlation()
+```
+## Ajuste de modelo
+
+```{r}
+m1 <- lm(
+  weight ~ length + diameter + hardness, 
+  data = triticum
+)
+summary(m1)
+```
+
+Then the summary() function provides the relevenat information for assesing the model as a whole and inspect the parameters
+
+The fitted model:
+
+$$\begin{align}
+Y_\text{weight} &= -31.95 + (-38.25) X_\text{length} + 87.98 X_\text{diameter}  + (-0.05)X_\text{hardness} 
+\end{align}$$
+
+_What these coefficients mean?_
+
+- They are **partial slopes**: effect of changing an $X$ but keeping the rest constant.
+
+- Unless standardized, they do not show their importance on the model.
+
+Example: $X_\text{length} = -38.25$ means that for each unit increase in length and holding the remaining predictors constant, the weight would decrease 40.15 units
+
+* Estimating the error of the model
+
+Errors are the difference between observed $y_i$ and estimated or fitted values $\hat y_i$ :
+
+$$\begin{align}
+e_i &= y_i - \hat{y}_i \\
+&= y_i - (\hat\beta_0 + \hat\beta_1x_{i1} + \hat\beta_2x_{i2} + \cdots + \hat\beta_px_{ip})
+\end{align}$$
+
+and the SSErr is:
+
+$$\text{SSErr} = \sum{(y_i - \hat{y}_i)^2}$$ 
+
+The **mean squared error** (MSErr) is:
+
+$$\text{MSErr} = \dfrac{\text{SSErr}}{n-p-1} = \dfrac{\sum{(y_i - \hat{y}_i)^2}}{n-p-1}$$
+
+Finally the estimate of the **standard error of the model**:
+
+$$\hat\sigma_\varepsilon = \text{RMSE} = \sqrt{\dfrac{\text{SSErr}}{n-p-1}} = \sqrt{\dfrac{\sum{(y_i - \hat{y}_i)^2}}{n-p-1}}$$
+
+We can get it form our model by using `sigma()` function
+
+```{r}
+sigma(m1)
+```
+
+_How to interpret this?_
+
+- The lower, the better.
+
+- It is the average deviation of a prediction from the observed values
+
+- Empirical rule: 95% of the prediction errors fall $\pm$ 2 RMSE
+
+- We can relate it to $\bar{Y}$
+
+## Verificación de supuestos 
+
+[{performance}](https://easystats.github.io/performance/articles/check_model.html)
+
+```{r, out.heigth="100%"}
+check_model(m1)
+```
+Looking at the residuals we can check if the model assumptions are supported
+
+Inspecting what is left in the residuals can help us assess if the assumptions are met
+
+¿Is there any pattern left in the residuals?
+
+¿Are the errors normally distributed?
+
+¿Are their variances constant?
+
+¿Any leverage value?
+
+-  Multicollinearity
+
+It occurs when some degree of correlation between independent variables exists.
+
+**Variance inflation ratio (VIF)**
+
+How much variance of a coefficients is increased due to multicollinearity.
+
+$$\text{VIF} = \dfrac{1}{1-R^2_j}$$
+where: $R^2_j$ is the $R^2$ obtained from regressing $X_j$ against the rest of $X$s
+
+> Rule of thumb: VIF > 10 might indicate serious multicollinearity. 
+
+```{r, eval=FALSE}
+vif(m1)   # from car package
+```
+
+As expected, `length` and `diameter` have huge VIF.
+
+Need to drop one of them o decorrelate them (tip: multivariate approach?)
+
+## Assessing the model
+
+```{r}
+anova(m1)
+```
+
+Applying the sums of squares partition from simple linear regression model 
+
+$$\begin{array}{ccccc}
+& \text{SSTot} & = & \text{SSReg} & + & \text{SSErr} \\
+& \sum \left(y_i - \bar{y} \right)^2 & = & \sum \left(\hat{y}_i - \bar{y} \right)^2 & + & \sum \left(y_i - \hat{y}_i \right)^2 \\
+\text{d.f.} &n-1 & = & p & + & n-p-1
+\end{array}$$
+
+![](fig_3/model_residuals.png){fig-align="center" width="300px"} 
+
+$\text{SSReg}$ summarizes how much variability of $Y$ is captured by the model as a **whole** having the intercept and $X_1,\dots,X_p$ as predictors. 
+
+¿How much $\text{SSReg}$ is good enough?
+
+$F_0 = \dfrac{\text{MSReg}}{\text{MSErr}} \sim F_{p;n-p-1}$
+
+Reject $H_0$ if: $P(F_0 > F) \le \alpha$ 
+
+Describe ANOVA, mention the overall hipotesis
+
+```{r}
+anova(m1)
+```
+
+Describe the output, the SSQ
+
+- Enough evidence for rejecting $H_0$ (P < 0.001) thus the overall regression model is statistically significant.
+
+- About 80% of the seed `weight` variability is explained by the model having `diameter`, `moistue`, and `hardness` as predictors
+
+## Contribucion de variables predictoras
+
+[{relaimpo}](https://rdrr.io/cran/relaimpo/man/calc.relimp.html)
+
+```{r}
+ri_m <- calc.relimp(m1, type =  "car", rela = TRUE )  
+ri_m
+plot(ri_m)
+```
+
+## Testing parameters
+
+```{r}
+summary(m1)$coefficients
+```
+## Reajustes del modelo
+
+How to decide which variables to include?
+
+- Context information about the problem
+
+- Exploratory analysis: correlations, scatterplots
+
+- Examining partial residuals (model mispecification)
+
+How to evaluate models?
+
+- Don't use $R^2$ as metric: the more predictors, the higher $R^2$.
+
+- Use metrics that penalize for model complexity: AIC, BIC, Cp, Adj $R^2$
+
+- Training/test or cross-validation approaches
+
+There are automatic algorithms like _stepwise_ for variable sepection:
+
+```{r}
+m2 <- update(m1, . ~ . -length)
+m3 <- step(m2, scope = list(upper = ~ .^2))
+```
+
+After removing length to avoid colinearity with diameter, assuming diameter is easier to measure
+
+We can run stepwise using step function which by default perform the procedure in both ways, forward and backwards. Optionally we can provide the scope limits. In this case, the first order interaction
+
+In both direction algorithm each forward step is followed by a backwards selection to remove those terms that became not significant after addition. The step() function uses the AIC as criterion for comparing models.
+
+In the example, it started by adding the interaction term and compared the new model with a model initial model (none) and a simpler model without hardeness + diameter.
+
+After that it test the removal of this term. No further removal is tried because of the hierarchy principle: if an interaction is retained, also terms involved in the interaction must be present.
+
+The summary of the model shows that the addition marginal improved the overall performance of the model (less residual standard error, higher R2)
+
+```{r}
+plot(compare_performance(m1, m2, m3))
+```
+
+## Modelo final
+
+```{r, eval=T}
+summary(m2)
+anova(m2)
+```
+
+
+[{sjPlot}](https://strengejacke.github.io/sjPlot/index.html)
+```{r, eval=T}
+tab_model(m2)
+```
+
+## Model predictions
+
+```{r}
+out <- check_predictions(m2)
+plot(out)
+```
+
+Cuánto será el peso del grano si tengo diameter=2.5 y hardness=-1
+
+```{r}
+new_data = data.frame(diameter = 2.5, hardness = -1)
+new_data <- new_data %>% 
+  bind_cols(predict(m2, newdata = new_data, interval = "confidence")) %>% 
+  rename(weight=fit)
+```
+
+```{r}
+plot_model(m2, type = "pred", terms = c("diameter", "hardness"))+
+  geom_point(data=new_data, aes(x=diameter, y=weight), 
+             inherit.aes = FALSE)
+```
+
+```{r, eval=T}
+plot_model(m2, type = "pred", terms = c("hardness", "diameter"))
+```
+
+Se nota la mayor importancia de `diameter`en este grafico no?
+
+Otra forma mas facil de usar el modelo... 
+
+```{r}
+library(ggeffects)
+ggpredict(m2, terms = c("diameter [2.5]", "hardness [-1]"))
+```
+
