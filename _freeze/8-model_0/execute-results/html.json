@@ -1,0 +1,14 @@
+{
+  "hash": "c2b03ac1cc03def35fdd5f05a4deace8",
+  "result": {
+    "markdown": "\n\n\n# Modelo lineal general {.unnumbered}\n\n$$Y =  \\beta X + U$$ donde:\n\n$Y$ son las observaciones de la/las **variables dependientes** (variables respuesta)\n\n$X$ son las observaciones de la/las **variables independientes** (variables predictoras)\n\n$B$ **parámetros** (son los componentes que queremos estimar!)\n\n$U$ es el error\n\n-   Incluye varios modelos estadísticos como: **regresión lineal**, t-test, **ANOVA**, ANCOVA, MANOVA, MANCOVA.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

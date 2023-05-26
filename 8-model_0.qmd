@@ -1,0 +1,17 @@
+```{r, include = F}
+knitr::opts_chunk$set(echo = T, eval = F)
+```
+
+# Modelo lineal general {.unnumbered}
+
+$$Y =  \beta X + U$$ donde:
+
+$Y$ son las observaciones de la/las **variables dependientes** (variables respuesta)
+
+$X$ son las observaciones de la/las **variables independientes** (variables predictoras)
+
+$B$ **parámetros** (son los componentes que queremos estimar!)
+
+$U$ es el error
+
+-   Incluye varios modelos estadísticos como: **regresión lineal**, t-test, **ANOVA**, ANCOVA, MANOVA, MANCOVA.

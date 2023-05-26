@@ -26,8 +26,9 @@ book:
     - part: "Semana 3"
       chapters:
         - 7-manipular.qmd
-        # - 8-regresion.qmd
-        # - 9-anova.qmd
+        - 8-model_0.qmd
+        - 8-model_1.qmd
+        - 9-model_2.qmd
     - referencias.qmd
 
 bibliography: references.bib
