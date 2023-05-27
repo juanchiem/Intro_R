@@ -358,7 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="regresión-lineal-múltiple" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="regresión-lineal-múltiple"><span class="header-section-number">7.2</span> Regresión lineal múltiple</h2>
 <p>Generalización de la regresión lineal simple al caso de más de una variable independiente, y es un caso particular del modelo lineal general, restringido a una única variable dependiente. El modelo básico de regresión lineal múltiple es:</p>
-<p><span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_pX_p + \varepsilon\]</span> <span class="math inline">\(X\)</span>s <strong>pueden ser</strong>:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_pX_p + \varepsilon\]</span></p>
+<p><span class="math inline">\(X\)</span>s <strong>pueden ser</strong>:</p>
 <ul>
 <li>variables cuantitativas (y sus transformaciones)</li>
 <li>variables categóricas (como variables dummys 0/1)</li>
@@ -628,6 +629,22 @@ Xtra
 </section>
 <section id="regresión-polinomial" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="regresión-polinomial"><span class="header-section-number">7.4</span> Regresión polinomial</h2>
+<p>La regresión polinomial es un modelo de análisis de regresión en el que la relación entre la variable independiente X y la variable dependiente Y se modela con un polinomio de n-ésimo grado en X. La regresión polinomial se ajusta a una relación no lineal entre el valor de X y la media condicional correspondiente de Y. Aunque la regresión polinomial ajusta un modelo no lineal a los datos, como problema de estimación estadística <strong>es lineal</strong>, en el sentido de que la función de regresión es<strong>lineal en los parámetros</strong> desconocidos que se estiman a partir de los datos. Por esta razón, la regresión polinomial se considera un caso especial de regresión lineal múltiple. Un ej. podria ser:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1X_1 + \beta_2X_1^{2} + \varepsilon\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Regresión exponencial (No lineal!)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En determinadas situaciones, la dependencia entre las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> es de forma exponencial (no lineal con los parámetros) en cuyo caso la función es del tipo:</p>
+<p><span class="math inline">\(Y = \beta_0 e^{\beta_1X}\)</span></p>
+</div>
+</div>
 <div class="cell" data-hash="8-model_1_cache/html/unnamed-chunk-34_5be5d03bb9fafb880a4c3c3123857e6d">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">hours =</span> <span class="fu">c</span>(<span class="fl">7.7</span>,<span class="fl">8.7</span>,<span class="fl">10.7</span>,<span class="fl">14.1</span>,</span>

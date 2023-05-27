@@ -79,7 +79,10 @@ Gráfico Scale-Location (o Spread-Location). La línea horizontal con puntos igu
 
 Generalización de la regresión lineal simple al caso de más de una variable independiente, y es un caso particular del modelo lineal general, restringido a una única variable dependiente. El modelo básico de regresión lineal múltiple es:
 
-$$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_pX_p + \varepsilon$$ $X$s **pueden ser**:
+$$Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \cdots + \beta_pX_p + \varepsilon$$
+
+
+$X$s **pueden ser**:
 
 -   variables cuantitativas (y sus transformaciones)
 -   variables categóricas (como variables dummys 0/1)
@@ -368,6 +371,21 @@ Vemos mayor R2 y menor RMSE y MAE con `rlm`
 :::
 
 ## Regresión polinomial
+
+La regresión polinomial es un modelo de análisis de regresión en el que la relación entre la variable independiente X y la variable dependiente 
+Y se modela con un polinomio de n-ésimo grado en X. La regresión polinomial se ajusta a una relación no lineal entre el valor de X y la media condicional correspondiente de Y. Aunque la regresión polinomial ajusta un modelo no lineal a los datos, como problema de estimación estadística **es lineal**, en el sentido de que la función de regresión 
+es**lineal en los parámetros** desconocidos que se estiman a partir de los datos. Por esta razón, la regresión polinomial se considera un caso especial de regresión lineal múltiple. Un ej. podria ser: 
+
+$$Y = \beta_0 + \beta_1X_1 + \beta_2X_1^{2} + \varepsilon$$
+
+::: callout-note
+# Regresión exponencial (No lineal!) {.unnumbered}
+
+En determinadas situaciones, la dependencia entre las variables $X$ e $Y$ es de forma exponencial (no lineal con los parámetros) en cuyo caso la función es del tipo:
+
+$Y = \beta_0 e^{\beta_1X}$
+
+:::
 
 ```{r}
 df <- data.frame(

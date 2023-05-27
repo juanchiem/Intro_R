@@ -4,6 +4,8 @@ knitr::opts_chunk$set(echo = T, eval = F)
 
 # Modelo lineal general {.unnumbered}
 
+Los modelos lineales generales (MLG) son una clase amplia de modelos estadísticos que se utilizan para analizar la relación entre una (o más) variable/s de respuesta y una o más variables predictoras. Estos modelos se basan en la suposición de que la relación entre las variables predictoras y la variable de respuesta es *lineal*.
+
 $$Y =  \beta X + U$$ donde:
 
 $Y$ son las observaciones de la/las **variables dependientes** (variables respuesta)

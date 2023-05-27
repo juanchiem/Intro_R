@@ -1,3 +1,5 @@
+pacman::p_load(tidyverse, rio, GGally, car, ggpmisc, printr)
+
 dummy <- data.frame(X = 0:10, Y = 3:13)
 ggplot(dummy, aes(X, Y)) +
   geom_line() +
@@ -57,3 +59,24 @@ ggplot(dat, aes(x, y)) +
   labs(x = "X", y = "Y")
 
 ggsave(last_plot(), file="fig_3/slr_assump.png", w=7, h=4)
+
+
+dummy <- data.frame(X = 0:10, Y = 3:13)
+flecha <- arrow(ends="both", angle=90, length=unit(.2,"cm"))
+ggplot(dummy, aes(X, Y)) +
+  geom_line() +
+  geom_hline(yintercept = 8, lty = 2) +
+  labs(x = "X", y = "Y") +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15)) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 10)) +
+  theme_bw(base_size = 16) + #tema +
+  annotate("point", x = 7, y = 13, colour = "red", size = 1.5) +
+  annotate('segment', x = 7, xend = 7, y = 10, yend = 13, arrow = flecha) +
+  annotate("text", x = 0, y = 8.5, label = "italic(bar(Y))", hjust = -0.5, parse = T) +
+  annotate("text", x = 6.5, y = 12, label = "paste(italic(Y), ' - ', italic(hat(Y)))", hjust = -1, parse = T) +
+  annotate('segment', x = 7, xend = 7, y = 8, yend = 10, arrow = flecha) + 
+  annotate("text", x = 6.5, y = 9, label = "paste(italic(hat(Y)), ' - ', italic(bar(Y)))", hjust = -1, parse = T) +
+  annotate("segment", x = 6.5, y = 8, xend = 6.5, yend = 13, arrow = flecha) +
+  annotate("text", x = 6, y = 11, label = "paste(italic(Y), ' - ', italic(bar(Y)))", hjust = 1, parse = T)
+
+ggsave(last_plot(), file="fig_3/model_residuals.png", w=7, h=4)
