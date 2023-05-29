@@ -299,7 +299,7 @@ fest_em
 -   Comparaciones múltiples
 
 ```{r}
-res_festuca <- cld(fest_em, alpha=.05, Letters=letters)
+res_festuca <- cld(fest_em, alpha=.05, Letters=letters, reversed = TRUE)
 res_festuca
 ```
 -   Gráfico final 
