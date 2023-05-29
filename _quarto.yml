@@ -26,6 +26,8 @@ book:
     - part: "Semana 3"
       chapters:
         - 7-manipular.qmd
+    - part: "Semana 4"
+      chapters:
         - 8-model_0.qmd
         - 8-model_1.qmd
         - 9-model_2.qmd
