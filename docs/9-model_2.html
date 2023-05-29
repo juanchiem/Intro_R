@@ -293,15 +293,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="un-solo-factor" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="un-solo-factor"><span class="header-section-number">8.1</span> Un solo factor</h2>
 <p>Experimento DCA: dataset <code>PlantGrowth</code></p>
+<p><code>PlantGrowth {datasets}</code>: Results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions.</p>
 <div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-3_6f6ec31e76a2d914d1411a3f1fb30385">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pg <span class="ot">&lt;-</span> PlantGrowth <span class="co"># simplificamos el nombre del dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>PlantGrowth {datasets}</code></p>
-<blockquote class="blockquote">
-<p>Results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions.</p>
-</blockquote>
-<p>1- Exploración numérica</p>
+<ul>
+<li>Exploración numérica</li>
+</ul>
 <div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-4_e31dff88fa9e050e8e6bc27741cf73b8">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pg) <span class="co"># tipo de variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -310,7 +309,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  skimr<span class="sc">::</span><span class="fu">skim</span>() <span class="co"># exploración numérica</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-6_a2ab6f7d2105781e20b8d57268d3bd5a">
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las mismas medidas resumen podriamos obtenerlo con dplyr</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-6_0bc6887bf987415685f7ea92472c4079">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pg <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -318,7 +328,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(weight),</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>2- Exploración visual</p>
+</div>
+</div>
+<ul>
+<li>Exploración visual</li>
+</ul>
 <div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-7_a26cabfa6c506fd6f233bc62f2195ee7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pg <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()<span class="sc">+</span> </span>
@@ -326,239 +340,295 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width=</span><span class="fl">0.2</span>)<span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">width=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>3- Ajuste del modelo lineal</p>
+<ul>
+<li>Ajuste del modelo lineal</li>
+</ul>
 <div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-8_774bd23fe0394e9166d36739972c08eb">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group, <span class="at">data =</span> pg)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span class="math display">\[y_{ij} = \mu + \alpha_i + e_{ij}; \:\:i = 1,..., k; \:j = 1,..., n\]</span> <span class="math display">\[N \sim (\sigma^2, 0)\]</span></p>
-<p>5- Diagnósticos</p>
-<p>¿Las varianzas (entre niveles del factor) son homogéneas?</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-9_63e1b9e0c69b0ec318ade1cd6ef15127">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(mod1) <span class="sc">%&gt;%</span> plot</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(mod1, which = 1)</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># car::leveneTest(mod1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Diagnósticos</p></li>
+<li><p>¿Las varianzas (entre niveles del factor) son homogéneas?</p></li>
+</ul>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-9_fbafe697f0d85aef387c88b7eb236905">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(mod1) <span class="sc">%&gt;%</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>¿Los residuos se distribuyen normales?</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-10_1c5b3af1a0748857d2f56015cabbcf5a">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(mod1) <span class="sc">%&gt;%</span> plot</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(mod1, which = 2)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># shapiro.test(rstandard(mod1))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<p>6- Estadisticas</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-11_643735e83784bdcaa0df082a25b0ad35">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod1)<span class="co"># caso balanceado</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># car::Anova(mod1)# caso desbalanceado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
-<p>7- Comparaciones múltiples {-}</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mismo con el paquete “stats”</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-10_74f85b45e489c20122de10a93fd8a51c">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(mod1, which = 1)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># car::leveneTest(mod1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li>¿Los residuos se distribuyen normales?</li>
+</ul>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-11_37dc97699b3898fd5a989fa3482b671b">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(mod1) </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(mod1) <span class="sc">%&gt;%</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mismo con el paquete “stats”</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-12_5b300e620fd93c3253798705e35b03c1">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check_normality(mod1) %&gt;% plot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mod1, <span class="at">which =</span> <span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(<span class="fu">rstandard</span>(mod1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li>Estadísticas</li>
+</ul>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-13_0c0323c95555b4fd41862c7382f21371">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(mod1)<span class="co"># caso balanceado</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod1)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># car::Anova(mod1)# caso desbalanceado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Estimación de medias y error estándar de cada trat</li>
+</ul>
 <p>Paquete <a href="https://cran.r-project.org/web/packages/emmeans/vignettes/vignette-topics.html">emmeans</a></p>
-<p>Medias e intervalos de confianza estimadas por el modelo</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-12_641d551a201d0a43483864500a2b4e5b">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mod1, <span class="sc">~</span> group, <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>em <span class="co"># %&gt;% knitr::kable()</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(em)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-14_25bf65c4d974a524d6c60807556bb00a">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>em <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(mod1, <span class="sc">~</span> group, <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>em <span class="co"># %&gt;% knitr::kable()</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(em)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>Comparaciones múltiples</li>
+</ul>
 <p>Test de Tukey</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-13_c9e80d01a3f8ae434cb9e0b03110e6c2">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>res  <span class="ot">&lt;-</span> <span class="fu">cld</span>(em, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">Letters =</span> letters, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">reverse =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> .<span class="dv">05</span>)  </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-15_372218406da6d3ce3024d93ec19f71bd">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res  <span class="ot">&lt;-</span> <span class="fu">cld</span>(em, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">Letters =</span> letters, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">reverse =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> .<span class="dv">05</span>)  </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-14_d596b659160aadfda8302ce605b0018b">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>?pwpm</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pwpm</span>(em, <span class="at">adjust =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Gráfico final</li>
+</ul>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-16_adb6221c0d62f982a8168932e625f7a5">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(em, <span class="at">col=</span><span class="st">"grey30"</span>) <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-15_eed70ae81307fae676d974a7681cb268">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> res <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">letras =</span> <span class="fu">str_squish</span>(.group), </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">weight =</span> emmean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>8- Grafico final</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-16_4b3ac36c2ffec4967c79e075db6a7077">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>res <span class="sc">%&gt;%</span>  </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>weight)<span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.CL, <span class="at">ymax =</span> upper.CL))<span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamiento"</span>, <span class="at">y =</span> <span class="st">"Peso (g)"</span>)<span class="sc">+</span>  </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> letras), <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> pg, <span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-17_759ac3c20ca626588ecc7169e88bc68b">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>res <span class="sc">%&gt;%</span>  </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y=</span>emmean)<span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.CL, <span class="at">ymax =</span> upper.CL))<span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Tratamiento"</span>, <span class="at">y =</span> <span class="st">"Peso (g)"</span>)<span class="sc">+</span>  </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Letras de Tukey</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">str_squish</span>(.group)), </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Observaciones originales</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> pg, <span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha=</span>.<span class="dv">5</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">y=</span>weight)) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparación de medias de los trat vs testigo (Dunnet)</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-17_5e35fdb196e033dcfa6085dc3bee3cd2">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(em, <span class="st">"trt.vs.ctrl1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-18_d6c6bd6304f8b295086b0d2dcf82f7ad">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(em, <span class="st">"trt.vs.ctrl1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="box1" class="blue-box">
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Xtras
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Comparación de medias por LSD</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-18_c5a47a1ab89ed2acc8628b283d123409">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>res_lsd <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(<span class="at">y =</span> mod1, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trt =</span> <span class="st">"group"</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> T, </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">console =</span> T)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>res_lsd</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(<span class="at">x =</span> res_lsd<span class="sc">$</span>groups, </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>),</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>          <span class="co"># main="Prueba de comparación de medias por medio del método LSD",</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>          <span class="co"># xlab="Tipo de Mezcla",</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>          <span class="co"># ylab="Rendimiento del proceso",</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">col=</span><span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-19_be252f468276b6166bcb618d9d6855ac">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>res_lsd <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(<span class="at">y =</span> mod1, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trt =</span> <span class="st">"group"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">group =</span> T, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">console =</span> T)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>res_lsd</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(<span class="at">x =</span> res_lsd<span class="sc">$</span>groups, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">7</span>),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>          <span class="co"># main="Prueba de comparación de medias por medio del método LSD",</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>          <span class="co"># xlab="Tipo de Mezcla",</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>          <span class="co"># ylab="Rendimiento del proceso",</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">col=</span><span class="st">"steelblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 </section>
 <section id="dos-factores" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="dos-factores"><span class="header-section-number">8.2</span> Dos factores</h2>
-<p>Datos <code>festuca</code></p>
-<blockquote class="blockquote">
-<p>Las plantas tienen un pH del suelo óptimo para el crecimiento, y esto varía entre especies. En consecuencia, esperaríamos que si cultivamos dos plantas en competencia entre sí a diferentes valores de pH, el efecto de la competencia podría variar según el pH del suelo. En un estudio reciente se investigó el crecimiento de la gramínea Festuca ovina (Festuca de oveja) en competencia con el brezo Calluna vulgaris (Ling) en suelos con diferente pH. Calluna está bien adaptada para crecer en suelos muy ácidos, como en los pantanos de arena. Festuca crece en suelos con un rango mucho más amplio de pH. Podríamos suponer que Calluna será un mejor competidor de Festuca en suelos muy ácidos que en suelos moderadamente ácidos. Para probar esta hipótesis, se diseñó un experimento en el que se cultivaron plántulas de Festuca en macetas en todas las combinaciones de dos niveles de dos tipos diferentes de tratamiento</p>
-</blockquote>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-19_9c7318ef6591816db04180cd7edacc30">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>festuca <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">weight =</span> <span class="fu">c</span>(<span class="fl">2.76</span>, <span class="fl">2.39</span>, <span class="fl">2.54</span>, <span class="fl">3.11</span>, <span class="fl">2.49</span>, <span class="fl">4.1</span>, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.72</span>, <span class="fl">2.28</span>, <span class="fl">3.43</span>, <span class="fl">3.31</span>, <span class="fl">3.21</span>, <span class="fl">4.1</span>, <span class="fl">3.04</span>, <span class="fl">4.13</span>, <span class="fl">5.21</span>, <span class="fl">5.92</span>, <span class="fl">7.31</span>, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fl">6.1</span>, <span class="fl">5.25</span>, <span class="fl">8.45</span>), <span class="at">ph =</span> <span class="fu">c</span>(<span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH3.5"</span>, <span class="st">"pH5.5"</span>, </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>, </span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">"pH5.5"</span>, <span class="st">"pH5.5"</span>), <span class="at">Calluna =</span> <span class="fu">c</span>(<span class="st">"Present"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>, </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">"Present"</span>, <span class="st">"Present"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">"Absent"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="st">"Absent"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>, <span class="st">"Absent"</span>)), <span class="at">row.names =</span> <span class="fu">c</span>(<span class="cn">NA</span>, </span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>20L), <span class="at">class =</span> <span class="st">"data.frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-20_215e11b89b575e648aebfc8fc264ffb4">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># festuca &lt;- rio::import("https://docs.google.com/spreadsheets/d/1c_FXVNkkj4LD8hVUForaaI24UhRauh_tWsy7sFRSM2k/edit#gid=477107180")</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>festuca <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"data/datos_curso.xls"</span>, <span class="at">sheet =</span><span class="st">"festuca"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Datos <code>festuca</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig_3/festuca.jpg" class="quarto-discovered-preview-image img-fluid figure-img" width="300"></p>
+</figure>
+</div>
+<p>En un estudio reciente se investigó el crecimiento de la gramínea <strong>Festuca ovina</strong> (Festuca de oveja) en competencia con el brezo <strong>Calluna vulgaris</strong> (Ling) en suelos con diferente pH. Calluna está bien adaptada para crecer en suelos muy ácidos, como en los pantanos de arena. Festuca crece en suelos con un rango mucho más amplio de pH. Podríamos suponer que Calluna será un mejor competidor de Festuca en suelos muy ácidos que en suelos moderadamente ácidos. Para probar esta hipótesis, se diseñó un experimento en el que se cultivaron plantas de Festuca en macetas a dos nivels de pH, con o sin la presencia de calluna como competidora, con 5 repeticiones.</p>
+</div>
+</div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-20_8654907e6a2e7e43bb674f57646eee08">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>festuca <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">"https://raw.githubusercontent.com/juanchiem/agro_data/master/festuca.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.character, as.factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Exploracion {-}</li>
 </ul>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-21_d964b5f70407dc3edf241fde4a57cd0a">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>festuca <span class="sc">%&gt;%</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(ph, Calluna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-21_9761f2682f1ef33f938686bf74626192">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> ph<span class="sc">+</span>Calluna, festuca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-22_348dc7e008fc305774fbf51809f0c4ef">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>festuca <span class="sc">%&gt;%</span> <span class="fu">skim</span>()</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>festuca <span class="ot">&lt;-</span> festuca <span class="sc">%&gt;%</span> <span class="fu">mutate_if</span>(is.character, as.factor)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>festuca <span class="sc">%&gt;%</span> <span class="fu">skim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-22_6e64e4e3ac61cf1a9d10733d9098ee19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>festuca <span class="sc">%&gt;%</span> <span class="fu">skim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-23_05df573d92825e366baf6d84abff7ee8">
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-23_055b15e69ea465e0b14733be2f479d7f">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dodge <span class="ot">&lt;-</span> <span class="fu">position_dodge</span>(<span class="at">width=</span><span class="fl">0.5</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>festuca <span class="sc">%&gt;%</span> </span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>()  <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> ph, <span class="at">y =</span> weight, <span class="at">fill =</span> Calluna) <span class="sc">+</span> </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> dodge, <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> dodge)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_line(aes(group=supp), stat = "summary", fun=mean) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> ph, <span class="at">y =</span> weight, <span class="at">col =</span> Calluna) <span class="sc">+</span> </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> dodge, <span class="at">width=</span>.<span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitterdodge</span>(<span class="at">dodge.width=</span><span class="fl">0.5</span>), </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">width=</span>.<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Ajuste {-}</li>
 </ul>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-24_6a34c37be2429fdf4aebbb43b4f10247">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fest_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> ph <span class="sc">*</span> Calluna, <span class="at">data =</span> festuca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-25_08f614a2a37c31d1ebd6d8dd1f6fb05f">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fest_fit_log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-24_234adbbcb1453c25dc12d375f79d450d">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> ph <span class="sc">*</span> Calluna, <span class="at">data =</span> festuca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Diagnósticos {-}</li>
 </ul>
 <p>¿Las varianzas (entre niveles del factor) son homogéneas?</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-26_df1d5d4294aaa4ec98de9d95c7103422">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(fest_fit) <span class="co"># %&gt;% plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-25_1ad478f383b30af40afe948b20885502">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(fit1) <span class="co"># %&gt;% plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>¿Los residuos se distribuyen normales?</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-27_01cc0be5361554ab84b0a40ca565db75">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(fest_fit) <span class="co"># %&gt;% plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para estabilizar las varianzas una opción puede ser la transformación de <strong>Potencia óptima de Box-Cox</strong></p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
 </div>
-<ul>
-<li>Transformación {-}</li>
-</ul>
-<div id="box1" class="blue-box">
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Transformación potencia óptima de boxcox</strong></p>
-<p>Esta transformación sólo tiene un parámetro: lambda, graficado en el eje x. Si el valor de lambda es igual a cero, se lleva a cabo la transformación con el logaritmo natural, y si dicho valor es distinto a cero la transformación es potencial.</p>
-<p><img src="fig/boxcox.png" class="quarto-discovered-preview-image img-fluid" width="300"></p>
-<p><img src="fig/boxcox_1.png" class="img-fluid" width="350"><img src="fig/boxcox_02.png" class="img-fluid" width="350"></p>
-<p>Si el parámetro lambda es igual a uno, no hace falta transformar la variable respuesta. Si el intervalo (líneas punteadas verticales) no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo.</p>
-<p>La utilización de la transformación Box-Cox requiere que todos los valores de la serie de entrada sean positivos y distintos a cero. Por ello es adicionada una constante a la variable original (0.5, por ej.).</p>
-<p>En el caso que la transformacion optima sea lambda = 0.2, el modelo resultaría:</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-28_e4f592270475e97a3fb5b070211e4a5a">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>((y<span class="fl">+0.5</span>)<span class="sc">^</span><span class="fl">0.2</span> <span class="sc">~</span> trt ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esta transformación sólo tiene un parámetro: lambda, graficado en el eje x, al cual deberiamos elevar nuestra variable respuesta para estabilizar varianzas.</p>
+<p>Si el intervalo de confianza (líneas punteadas verticales) del valor máximo contiene al 1, no deberíamos transformar la variable respuesta:</p>
+<p><img src="fig_3/boxcox_1.png" class="img-fluid" width="350"></p>
+<p>Si el valor de lambda es igual a cero, se lleva a cabo la transformación con el logaritmo natural</p>
+<p><img src="fig_3/boxcox_2.png" class="img-fluid" width="350"></p>
+<p>…Si el intervalo no contiene a 0 ni a 1, hay que transformar la variable elevando a la potencia del valor de lamba incluido en el intervalo.</p>
+<p><img src="fig_3/boxcox.png" class="img-fluid" width="300"></p>
+<p>Noten que si nuestros datos contienen 0´s, el LN nos daria errores, en esos casos es adicionada una constante a la variable original (0.5, por ej.).</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-26_abe1f3905640f7b68f4007011bbd5f2d">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">log</span>(y<span class="fl">+0.5</span>) <span class="sc">~</span> trt ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-29_b1c4f956c67f2285734d5770052ec968">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(fest_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-27_a5e228050fbf378c8d61974e79a77c3b">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
 <p>Se sugiere transformacion <code>log</code> ya que el lambda optimo contiene al 0</p>
 </blockquote>
 <ul>
-<li>Reajuste de modelo {-}</li>
+<li>Reajuste de modelo</li>
 </ul>
 <p>…con variable respuesta transformada</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-30_61e387d415f210d637e671bbc977bf26">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fest_fit_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(weight) <span class="sc">~</span>  Calluna <span class="sc">*</span> ph, <span class="at">data =</span> festuca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-28_962c79c6f019651952ac05eb1fadac89">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(weight) <span class="sc">~</span>  Calluna <span class="sc">*</span> ph, <span class="at">data =</span> festuca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Nuevamente se diagnostica la estabilizacion de la varianza</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-31_cf0ef5ff72079d20876255432d42b297">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(fest_fit_log) <span class="sc">%&gt;%</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nuevamente se diagnostica la estabilización de las varianzas</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-29_330bccf5a390a6d6633ff99a2d3bb413">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_heteroscedasticity</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>¿Los residuos se distribuyen normales?</p>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-30_d61776e588f749d243575d108f77133d">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_normality</span>(fit2) <span class="co"># %&gt;% plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora si, podríamos avanzar con nuestro modelo.</p>
+<ul>
+<li>Estadísticas del modelo</li>
+</ul>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-31_16e5117415c32c0d5f9047bbaf864cf5">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fit2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Estadisticas del modelo {-}</li>
+<li>Medias y SE estimados por el modelo</li>
 </ul>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-32_fed5f3c4c90ac3309e57661f4b72eb06">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(fest_fit_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-32_f0d020d94894e1e2af82bc05773b0801">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fest_em <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fit2, <span class="sc">~</span> Calluna <span class="sc">|</span> ph, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fest_em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Medias estimadas por el modelo {-}</li>
+<li>Comparaciones múltiples</li>
 </ul>
-<p>… y su dispersion</p>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-33_c2eee4d5b90d92326eab8dcb313f0970">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fest_em <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(fest_fit_log, <span class="sc">~</span> Calluna <span class="sc">|</span> ph, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fest_em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-33_4e8e0339892ad422471b9940348efd7e">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>res_festuca <span class="ot">&lt;-</span> <span class="fu">cld</span>(fest_em, <span class="at">alpha=</span>.<span class="dv">05</span>, <span class="at">Letters=</span>letters)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>res_festuca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Comparaciones multiples {-}</li>
+<li>Gráfico final</li>
 </ul>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-34_c791c1fcc20647415c981ec1dd7ae2ce">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>res_festuca <span class="ot">&lt;-</span> <span class="fu">cld</span>(fest_em, <span class="at">alpha=</span>.<span class="dv">05</span>, <span class="at">Letters=</span>letters)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>res_festuca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-34_06abe750518f36ed533bf16753535dde">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>res_festuca <span class="sc">%&gt;%</span>  </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ph, <span class="at">y=</span>response, <span class="at">col=</span>Calluna)<span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.CL, <span class="at">ymax =</span> upper.CL), </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">position =</span> dodge)<span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Weight (g)"</span>)<span class="sc">+</span>  </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">angle=</span><span class="dv">90</span>, </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">str_squish</span>(.group)), <span class="at">position =</span> dodge)<span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(data = festuca, alpha=0.2, position = position_dodge(width=0.5)) +</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Grafico final {-}</li>
+<li>Recursos</li>
 </ul>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-35_65922ee92149678edc7760f01eb6ffae">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>res_festuca <span class="ot">&lt;-</span> res_festuca <span class="sc">%&gt;%</span> </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">letras=</span><span class="fu">str_squish</span>(.group), </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">weight=</span>response)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-hash="9-model_2_cache/html/unnamed-chunk-36_f5596d695d4ad58f31b3d171bbbdbe60">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>res_festuca <span class="sc">%&gt;%</span>  </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>ph, <span class="at">y=</span>weight, <span class="at">col=</span>Calluna)<span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower.CL, <span class="at">ymax =</span> upper.CL), </span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">position =</span> dodge)<span class="sc">+</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Weight (g)"</span>)<span class="sc">+</span>  </span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="fu">aes</span>(<span class="at">label =</span> letras), <span class="at">position =</span> dodge)<span class="sc">+</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_jitter(data = festuca, alpha=0.2, position = position_dodge(width=0.5)) +</span></span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><b>Lexturas recomendadas</b></p>
-<ul>
-<li><p><a href="https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/748">Analysis and Interpretation of Interactions in Agricultural Research</a></p></li>
-<li><p><a href="https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/763">Analysis of Combined Experiments Revisited</a></p></li>
-<li><p><a href="http://conjugateprior.org/2013/01/formulae-in-r-anova/">Model Syntax in R</a></p></li>
-<li><p><a href="https://stat.ethz.ch/~meier/teaching/anova/">ANOVA: A Short Intro Using R</a></p></li>
-<li><p><a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html">glmmFAQ</a></p></li>
-<li><p><a href="https://peerj.com/articles/4794/">A brief introduction to mixed effects modelling and multi-model inference in ecology</a></p></li>
-<li><p><a href="https://stats.idre.ucla.edu/other/dae/">Data Analysis Examples</a></p></li>
-<li><p><a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Analysis and Visualization in R for Ecologists</a></p></li>
-<li><p><a href="http://monashbioinformaticsplatform.github.io/RNAseq-DE-analysis-with-R/">RNAseq analysis with R</a></p></li>
-</ul>
-<p>:::</p>
+<p><a href="https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/748">Analysis and Interpretation of Interactions in Agricultural Research</a></p>
+<p><a href="https://dl.sciencesocieties.org/publications/aj/pdfs/107/2/763">Analysis of Combined Experiments Revisited</a></p>
+<p><a href="http://conjugateprior.org/2013/01/formulae-in-r-anova/">Model Syntax in R</a></p>
+<p><a href="https://stat.ethz.ch/~meier/teaching/anova/">ANOVA: A Short Intro Using R</a></p>
+<p><a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html">glmmFAQ</a></p>
+<p><a href="https://peerj.com/articles/4794/">A brief introduction to mixed effects modelling and multi-model inference in ecology</a></p>
+<p><a href="https://stats.idre.ucla.edu/other/dae/">Data Analysis Examples</a></p>
+<p><a href="https://datacarpentry.org/R-ecology-lesson/index.html">Data Analysis and Visualization in R for Ecologists</a></p>
+<p><a href="http://monashbioinformaticsplatform.github.io/RNAseq-DE-analysis-with-R/">RNAseq analysis with R</a></p>
+<p><a href="https://www.cienciadedatos.net/documentos/25_regresion_lineal_multiple.html#Introducci%C3%B3n">regresion_lineal_multiple</a></p>
 
 
 </section>
